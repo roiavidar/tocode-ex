@@ -36,7 +36,7 @@ export default function GuessTheNumber() {
     return (
         <>
             <h3>Guess the number !</h3>
-            <input type="text" value={guessedNumber} onChange={onNumberGuessed}/>
+            <input type="number" value={guessedNumber} onChange={onNumberGuessed}/>
             <div>{message}</div>
         </>
     );

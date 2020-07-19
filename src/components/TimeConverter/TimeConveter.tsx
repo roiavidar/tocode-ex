@@ -11,7 +11,7 @@ const timeConverter = function TimeConverter() {
     return (
         <>
             {
-                timeRatios.map((ratio: number) => <input type="text" value={time / ratio} onChange={convertToSeconds.bind(null, ratio)} />)
+                timeRatios.map((ratio: number) => <input type="number" value={time / ratio} onChange={convertToSeconds.bind(null, ratio)} />)
             }
         </>
     )
