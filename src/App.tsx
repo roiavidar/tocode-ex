@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MultiInput from './components/MultiInput/MultiInput';
+import TimeConverter from './components/TimeConverter/TimeConveter';
+import GuessTheNumber from './components/GuessTheNumber/GuessTheNumber';
+import ColorPicker from './components/ColorPicker/ColorPicker';
+import ColorPickerShades from './components/ColorPickerShades/ColorPickerShades';
 
 function App() {
+
+  const inputStyle = {
+    padding: '5px',
+    margin: '5px',
+    display: 'block'
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <MultiInput
+      inputsNumber={5}>
+        <input
+          style={inputStyle}
+          type='text'
+          placeholder='type something...'>
+        </input>
+    </MultiInput>
+    <TimeConverter />
+    <GuessTheNumber />
+    <ColorPicker color="#dddddd" />
+    <ColorPickerShades />
+    </>
   );
 }
 
