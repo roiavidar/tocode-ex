@@ -3,7 +3,8 @@ import { ColorShadesPropsModel } from './ColorShadesPropsModel';
 var tinycolor = require("tinycolor2");
 
 export default function ColorShades(props: ColorShadesPropsModel) {
-    const shades: number[] = [...Array(10)];
+    const numberOfShades = 10;
+    const shades: number[] = [...Array(numberOfShades)];
     const style = {
         display: 'inline-block',
         width: '100px',
@@ -16,7 +17,7 @@ export default function ColorShades(props: ColorShadesPropsModel) {
         <>
             {
                 shades.map((item: number, index: number) => {
-                    color.setAlpha((index + 1) / 10);
+                    color.setAlpha((index + 1) / numberOfShades);
                     return (
                         <div
                             style={{...style, backgroundColor: color.toRgbString()}}> 

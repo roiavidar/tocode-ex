@@ -8,9 +8,10 @@ export default function GuessTheNumber() {
     const tooLow = 'Too low';
     const truthPercentage = 0.8;
     const successMessage = 'You found the number!';
+    const maxGuessedNumber = 1000;
 
     useEffect(() => {
-        setRandomNumber(Math.floor(Math.random() * 1000) + 1);
+        setRandomNumber(Math.floor(Math.random() * maxGuessedNumber) + 1);
     }, []);
 
     function trickTheUser() {
