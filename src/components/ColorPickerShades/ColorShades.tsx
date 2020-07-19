@@ -1,5 +1,7 @@
 import React from 'react';
 import { ColorShadesPropsModel } from './ColorShadesPropsModel';
+// It's nicer to stay with one import syntax:
+// import tinycolor from 'tinycolor2';
 var tinycolor = require("tinycolor2");
 
 export default function ColorShades(props: ColorShadesPropsModel) {
