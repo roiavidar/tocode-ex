@@ -12,14 +12,14 @@ export default function ColorPicker(props: ColorPickerPropsModel) {
         props.color && setColor(props.color);
     }, [props.color]);
 
-    function onColorChanged(event: ChangeEvent<HTMLInputElement>) {
+    function colorChangedHandler(event: ChangeEvent<HTMLInputElement>) {
         const color = event.target.value;
         setColor(color);
     }
 
     return(
         <>
-            <input type="color" value={color} onChange={onColorChanged}/>
+            <input type="color" value={color} onChange={colorChangedHandler}/>
             <div style={{...style, backgroundColor: color}}></div>
         </>
     )

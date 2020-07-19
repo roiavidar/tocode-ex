@@ -4,14 +4,14 @@ import ColorShades from './ColorShades';
 export default function ColorPickerShades() {
     const [color, setColor] = useState('');
 
-    function onColorChanged(event: ChangeEvent<HTMLInputElement>) {
+    function colorChangedHandler(event: ChangeEvent<HTMLInputElement>) {
         const color = event.target.value;
         setColor(color);
     }
 
     return (
         <>
-            <input type="color" onChange={onColorChanged} />
+            <input type="color" onChange={colorChangedHandler} />
             <div>
                 <ColorShades color={color}/>
             </div>

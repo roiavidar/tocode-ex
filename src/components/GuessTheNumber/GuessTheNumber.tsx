@@ -17,7 +17,7 @@ export default function GuessTheNumber() {
         return Math.random() >= truthPercentage;
     }
 
-    function onNumberGuessed(event: ChangeEvent<HTMLInputElement>) {
+    function numberGuessedHandler(event: ChangeEvent<HTMLInputElement>) {
         console.log(randomNumber);
         const number = Number(event.target.value);
     
@@ -36,7 +36,7 @@ export default function GuessTheNumber() {
     return (
         <>
             <h3>Guess the number !</h3>
-            <input type="number" value={guessedNumber} onChange={onNumberGuessed}/>
+            <input type="number" value={guessedNumber} onChange={numberGuessedHandler}/>
             <div>{message}</div>
         </>
     );
