@@ -5,6 +5,7 @@ import TimeConverter from './components/TimeConverter/TimeConveter';
 import GuessTheNumber from './components/GuessTheNumber/GuessTheNumber';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import ColorPickerShades from './components/ColorPickerShades/ColorPickerShades';
+import { InputProps } from './components/MultiInput/MultiInput.model';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
     <MultiInput
       inputsNumber={5}>
         {
-          ({text, onChange}) => <input
+          ({text, onChange}: InputProps) => <input
                                   style={inputStyle}
                                   type='text'
                                   value={text}
