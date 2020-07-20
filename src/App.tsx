@@ -8,6 +8,7 @@ import ColorPickerShades from './components/ColorPickerShades/ColorPickerShades'
 import { InputProps } from './components/MultiInput/MultiInput.model';
 import { CatchTheTarget } from './components/CatchTheTarget/CatchTheTarget';
 import { FilterList } from './components/FilterList/FilterList';
+import { UserForm } from './components/UserForm/UserForm';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
     <ColorPickerShades />
     <CatchTheTarget />
     <FilterList items={items} />
+    <UserForm />
     </>
   );
 }
