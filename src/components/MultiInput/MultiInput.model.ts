@@ -5,10 +5,6 @@ export interface MultiInputPropsModel {
     children: MultiInputChildren;
 }
 
-export type MultiInputComponent = {
-    (props: MultiInputPropsModel): JSX.Element;
-};
-
 export interface InputProps {
     text: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;

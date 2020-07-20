@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
-import { MultiInputComponent, MultiInputChildren} from './MultiInput.model';
+import {MultiInputChildren} from './MultiInput.model';
 
-const multiInputComponent: MultiInputComponent =  function MultiInput(props: {inputsNumber: number, children: MultiInputChildren}) {
+export default function MultiInput(props: {inputsNumber: number, children: MultiInputChildren}) {
     const [text, setText] = useState('');
 
     const inputsNumber: number[] = [...Array(props.inputsNumber)];
@@ -18,5 +18,3 @@ const multiInputComponent: MultiInputComponent =  function MultiInput(props: {in
         </>   
     )
 }
-
-export default multiInputComponent;

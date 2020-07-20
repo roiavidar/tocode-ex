@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 
-const timeConverter = function TimeConverter() {
+export default function TimeConverter() {
     const [time, setTime] = useState(0);
     const timeRatios = [1, 60, 3600];
 
@@ -17,5 +17,3 @@ const timeConverter = function TimeConverter() {
         </> 
     )
 }
-
-export default timeConverter;
