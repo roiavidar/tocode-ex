@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
-import { ColorPickerPropsModel } from './ColorPickerPropsModel';
 
-export default function ColorPicker(props: ColorPickerPropsModel) {
+export default function ColorPicker(props: {color?: string}) {
     const [color, setColor] = useState('');
     const style = {
         width: '100px',
@@ -10,7 +9,7 @@ export default function ColorPicker(props: ColorPickerPropsModel) {
 
     useEffect(() => {
         props.color && setColor(props.color);
-    }, [props.color]);
+    }, []);
 
     function colorChangedHandler(event: ChangeEvent<HTMLInputElement>) {
         const color = event.target.value;

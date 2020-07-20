@@ -1,8 +1,7 @@
 import React from 'react';
-import { ColorShadesPropsModel } from './ColorShadesPropsModel';
-var tinycolor = require("tinycolor2");
+import tinycolor from 'tinycolor2';
 
-export default function ColorShades(props: ColorShadesPropsModel) {
+export default function ColorShades(props: {color: string}) {
     const numberOfShades = 10;
     const shades: number[] = [...Array(numberOfShades)];
     const style = {

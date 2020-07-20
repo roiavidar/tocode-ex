@@ -18,11 +18,16 @@ function App() {
     <>
     <MultiInput
       inputsNumber={5}>
-        <input
-          style={inputStyle}
-          type='text'
-          placeholder='type something...'>
-        </input>
+        {
+          ({text, onChange}) => <input
+                                  style={inputStyle}
+                                  type='text'
+                                  value={text}
+                                  onChange={onChange}
+                                  placeholder='type something...'>
+                                </input>
+          
+        }  
     </MultiInput>
     <TimeConverter />
     <GuessTheNumber />

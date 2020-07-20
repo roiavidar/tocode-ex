@@ -1,11 +1,10 @@
 import React, { useState, ChangeEvent } from 'react';
-import { MultiInputPropsModel, MultiInputComponent} from './MultiInput.model';
+import { MultiInputComponent, MultiInputChildren} from './MultiInput.model';
 
-const multiInputComponent: MultiInputComponent =  function MultiInput(props: { inputsNumber: number[] }) {
+const multiInputComponent: MultiInputComponent =  function MultiInput(props: {inputsNumber: number, children: MultiInputChildren}) {
     const [text, setText] = useState('');
 
     const inputsNumber: number[] = [...Array(props.inputsNumber)];
-    const inputWithProps = React.cloneElement(props.children, {...props.children.props, value: text, onChange: onChangeHandler});
 
     function onChangeHandler(event: ChangeEvent<HTMLInputElement>) {
        setText(event.target.value);
@@ -14,7 +13,7 @@ const multiInputComponent: MultiInputComponent =  function MultiInput(props: { i
     return (
         <>
             {
-                inputsNumber.map(() => inputWithProps)
+                inputsNumber.map(() => props.children({text, onChange: onChangeHandler}))
             }
         </>   
     )

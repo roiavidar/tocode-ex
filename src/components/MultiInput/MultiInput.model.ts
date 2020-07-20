@@ -1,8 +1,17 @@
+import { ChangeEvent } from "react";
+
 export interface MultiInputPropsModel {
     inputsNumber: number;
-    children: JSX.Element;
+    children: MultiInputChildren;
 }
 
 export type MultiInputComponent = {
     (props: MultiInputPropsModel): JSX.Element;
 };
+
+export interface InputProps {
+    text: string;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export type MultiInputChildren = (props: InputProps) => JSX.Element;

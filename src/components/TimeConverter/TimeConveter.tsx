@@ -10,10 +10,11 @@ const timeConverter = function TimeConverter() {
 
     return (
         <>
-            {
-                timeRatios.map((ratio: number) => <input type="number" value={time / ratio} onChange={convertToSecondsHandler.bind(null, ratio)} />)
-            }
-        </>
+            {timeRatios.map((ratio: number) => <input 
+                                                type="number"
+                                                value={time / ratio}
+                                                onChange={(event: ChangeEvent<HTMLInputElement>) => { convertToSecondsHandler(ratio, event)}} />)}
+        </> 
     )
 }
 
