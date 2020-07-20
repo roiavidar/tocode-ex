@@ -7,6 +7,7 @@ import ColorPicker from './components/ColorPicker/ColorPicker';
 import ColorPickerShades from './components/ColorPickerShades/ColorPickerShades';
 import { InputProps } from './components/MultiInput/MultiInput.model';
 import { CatchTheTarget } from './components/CatchTheTarget/CatchTheTarget';
+import { FilterList } from './components/FilterList/FilterList';
 
 function App() {
 
@@ -15,6 +16,8 @@ function App() {
     margin: '5px',
     display: 'block'
   };
+
+  const items = ['apple', 'oranges', 'watermelon'];
 
   return (
     <>
@@ -36,6 +39,7 @@ function App() {
     <ColorPicker color="#dddddd" />
     <ColorPickerShades />
     <CatchTheTarget />
+    <FilterList items={items} />
     </>
   );
 }
