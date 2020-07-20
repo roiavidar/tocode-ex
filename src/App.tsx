@@ -6,6 +6,7 @@ import GuessTheNumber from './components/GuessTheNumber/GuessTheNumber';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import ColorPickerShades from './components/ColorPickerShades/ColorPickerShades';
 import { InputProps } from './components/MultiInput/MultiInput.model';
+import { CatchTheTarget } from './components/CatchTheTarget/CatchTheTarget';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
     <GuessTheNumber />
     <ColorPicker color="#dddddd" />
     <ColorPickerShades />
+    <CatchTheTarget />
     </>
   );
 }
