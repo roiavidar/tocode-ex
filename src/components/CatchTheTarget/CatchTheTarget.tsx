@@ -25,6 +25,9 @@ export function CatchTheTarget() {
 
     function hitHandler() {
         switchTarget();
+        // When setting a state relative to the old value
+        // we use a function:
+        // setScore(v => v + bonusPoints)
         setScore(score + bonusPoints);
     }
 
@@ -34,9 +37,24 @@ export function CatchTheTarget() {
     }
 
     function missHandler() {
+        // When setting a state relative to the old value
+        // we use a function:
+        // setScore(v => v + penaltyPoints)
         setScore(score + penaltyPoints);
     }
 
+    // A tiny markup comment:
+    // look how nice it looks to have: ScoreBoard and GameBoard,
+    // it feels so abstract
+    // but then you finish with the button which kinda breaks this flow
+    // would have been nicer to have a full component there for example:
+    // <GameControlPanel controls="new-game,pause-resume" />
+    // or maybe:
+    // <GameControlPanel>
+    //    <NewGameButton />
+    //    <PauseResumeButton />
+    // </GameControlPanel>
+    // or something like that
     return (
         <>
             <ScoreBoard score={score} />

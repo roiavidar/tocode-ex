@@ -44,8 +44,9 @@ export function UserForm() {
         <div>
             <h3>{userFormTitle}</h3>
             {
+                // why React.cloneElement?
                 steps.map((step: JSX.Element, index: number) => 
-                    currentStep === index && React.cloneElement(step)
+                    currentStep === index && step
                 )
             }
             <div>
