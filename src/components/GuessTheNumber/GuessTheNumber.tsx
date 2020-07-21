@@ -4,22 +4,24 @@ import { SecretNumber } from './SecretNumber';
 export default function GuessTheNumber(props:{
     secretNumber: SecretNumber
 }) {
+    const { secretNumber } = props;
     const [guessedNumber, setGussedNumber] = useState(0);
     const [message, setMessage] = useState('');
     const tooHigh = 'Too high';
     const tooLow = 'Too low';
     const successMessage = 'You found the number!';
+    const SECRET_NUMBER = 0;
 
     function numberGuessedHandler(event: ChangeEvent<HTMLInputElement>) {
         const number = Number(event.target.value);
         
-        const result = props.secretNumber.guess(number);
-        if (result === 0) {
+        const result = secretNumber.guess(number);
+        if (result === SECRET_NUMBER) {
             setMessage(successMessage);
-        } else if (result < 0) {
-            setMessage(tooHigh);
-        } else if (result > 0) {
+        } else if (result < SECRET_NUMBER) {
             setMessage(tooLow);
+        } else if (result > SECRET_NUMBER) {
+            setMessage(tooHigh);
         }
         setGussedNumber(number);
     }

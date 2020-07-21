@@ -7,16 +7,15 @@ export class SecretNumber {
         pickNumber: () => number,
         lie: () => boolean
     }) {
-        this.lie = props.lie;
-
-        this.pickNumber = props.pickNumber;
-
-        this.secretNumber = props.pickNumber();
+        const { pickNumber, lie } = props;
+        this.lie = lie;
+        this.pickNumber = pickNumber;
+        this.secretNumber = pickNumber();
         console.log(this.secretNumber);
     }
 
     guess(gussedNumber: number) {
-        let result = this.secretNumber - gussedNumber;
+        let result = gussedNumber - this.secretNumber;
         return this.lie() ? result*-1 : result;
     }
 }

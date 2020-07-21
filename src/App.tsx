@@ -10,6 +10,7 @@ import { CatchTheTarget } from './components/CatchTheTarget/CatchTheTarget';
 import { FilterList } from './components/FilterList/FilterList';
 import { UserForm } from './components/UserForm/UserForm';
 import {SecretNumber} from './components/GuessTheNumber/SecretNumber';
+
 function App() {
 
   const inputStyle = {
@@ -22,7 +23,7 @@ function App() {
 
   const secretNumber = new SecretNumber({
     lie: () => {
-      return Math.random() >= 0.8;
+      return Math.random() >= 0.9;
     },
     pickNumber: () => {
        return Math.floor(Math.random() * 1000) + 1
