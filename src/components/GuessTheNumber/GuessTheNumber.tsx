@@ -1,38 +1,25 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
+import { SecretNumber } from './SecretNumber';
 
-export default function GuessTheNumber() {
-    const maxGuessedNumber = 1000;
+export default function GuessTheNumber(props:{
+    secretNumber: SecretNumber
+}) {
     const [guessedNumber, setGussedNumber] = useState(0);
-    const [randomNumber] = useState(Math.floor(Math.random() * maxGuessedNumber) + 1);
-    const [trick, setTrick] = useState(false);
     const [message, setMessage] = useState('');
     const tooHigh = 'Too high';
     const tooLow = 'Too low';
-    const truthPercentage = 0.8;
     const successMessage = 'You found the number!';
 
-    function trickTheUser() {
-        if (Math.random() >= truthPercentage) {
-            setTrick(true);
-        } else {
-            setTrick(false);
-        }
-    }
-
     function numberGuessedHandler(event: ChangeEvent<HTMLInputElement>) {
-        console.log(randomNumber);
         const number = Number(event.target.value);
-
-        trickTheUser();
-
-        if (number > randomNumber) {
-            const message = trick ? tooLow : tooHigh;
-            setMessage(message);
-        } else if (number < randomNumber) {
-            const message = trick ? tooHigh : tooLow;
-            setMessage(message);
-        } else if (number === randomNumber) {
+        
+        const result = props.secretNumber.guess(number);
+        if (result === 0) {
             setMessage(successMessage);
+        } else if (result < 0) {
+            setMessage(tooHigh);
+        } else if (result > 0) {
+            setMessage(tooLow);
         }
         setGussedNumber(number);
     }
