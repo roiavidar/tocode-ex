@@ -8,11 +8,7 @@ export function CatchTheTarget() {
     const penaltyPoints = -5;
     const boxes = 10;
     const [score, setScore] = useState(0);
-    const [target, setTarget] = useState(-1);
-
-    useEffect(() => {
-        setTarget(calcTarget());
-    }, [])
+    const [target, setTarget] = useState(calcTarget());
 
     function reset() {
         switchTarget();
