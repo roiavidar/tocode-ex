@@ -10,11 +10,9 @@ import { CatchTheTarget } from './components/CatchTheTarget/CatchTheTarget';
 import { FilterList } from './components/FilterList/FilterList';
 import { UserForm } from './components/UserForm/UserForm';
 import {SecretNumber} from './components/GuessTheNumber/SecretNumber';
-import PersonalInfo from './components/UserForm/PersonalInfo';
-import LocationInfo from './components/UserForm/LocationInfo';
-import Summery from './components/UserForm/Summery';
 import StepsForm from './components/UserForm/StepsForm';
 import { TimeConverterLogic } from './components/TimeConverter/TimeConverterLogic';
+import CatchTheTargetLogic from './components/CatchTheTarget/CatchTheTargetLogic';
 
 function App() {
 
@@ -41,6 +39,14 @@ function App() {
     ratios: [1, 60, 3600]
   });
 
+  const boxes = 10;
+  const catchTheTargetLogic = new CatchTheTargetLogic({
+    bonusPoints: 10,
+    penaltyPoints: -5,
+    boxes,
+    calcTarget: () => Math.floor(Math.random() * boxes)
+  });
+
   return (
     <>
     <MultiInput
@@ -60,7 +66,7 @@ function App() {
     <GuessTheNumber secretNumber={secretNumber} />
     <ColorPicker color="#dddddd" />
     <ColorPickerShades />
-    <CatchTheTarget />
+    <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
     <UserForm stepsForm={stepsForm} />
     </>

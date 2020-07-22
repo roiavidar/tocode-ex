@@ -1,45 +1,37 @@
 import React, { useState } from 'react';
 import { ScoreBoard } from './ScoreBoard';
 import { GameBoard } from './GameBoard';
+import ICatchTheTargetLogic from './ICatchTheTarget';
 
-export function CatchTheTarget() {
+export function CatchTheTarget(props: {
+    logic: ICatchTheTargetLogic
+}) {
+    const {logic} = props;
     const newGame = 'New Game';
-    const bonusPoints = 10;
-    const penaltyPoints = -5;
-    const boxes = 10;
-    const [score, setScore] = useState(0);
-    const [target, setTarget] = useState(calcTarget());
+    const [score, setScore] = useState(logic.score);
+    const [target, setTarget] = useState(logic.target);
+
+    function tryToHitHandler(box: number) {
+        logic.tryToHit(box);
+        updateState();
+    }
 
     function reset() {
-        switchTarget();
-        setScore(0);
+        logic.reset();
+        updateState();
     }
 
-    function calcTarget() {
-        return Math.floor(Math.random() * boxes);
-    }
-
-    function hitHandler() {
-        switchTarget();
-        setScore(score + bonusPoints);
-    }
-
-    function switchTarget() {
-        const target = calcTarget();
-        setTarget(target);
-    }
-
-    function missHandler() {
-        setScore(score + penaltyPoints);
+    function updateState() {
+        setScore(logic.score);
+        setTarget(logic.target);
     }
 
     return (
         <div>
             <ScoreBoard score={score} />
             <GameBoard 
-                    hit={hitHandler}
-                    miss={missHandler}
-                    boxes={boxes}
+                    tryToHit={tryToHitHandler}
+                    boxes={logic.boxes}
                     target={target} />
             <button onClick={reset}>{newGame}</button>
         </div>

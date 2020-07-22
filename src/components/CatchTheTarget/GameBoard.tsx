@@ -1,12 +1,12 @@
 import React from 'react';
 
 export function GameBoard(props: {
-    hit: () => void,
-    miss: () => void,
+    tryToHit: (box: number) => void,
     boxes: number,
     target: number
 }) {
-    const inputBoxes: number[] =  [...Array(props.boxes)];
+    const { tryToHit, boxes, target} = props;
+    const inputBoxes: number[] =  [...Array(boxes)];
     const targetStyle = { backgroundColor: 'red'};
     const regularBoxStyle = { backgroundColor: 'grey '};
 
@@ -15,8 +15,8 @@ export function GameBoard(props: {
             {
                 inputBoxes.map((box: number, index: number) => <input 
                                                     type="text"
-                                                    onClick={index === props.target ? props.hit : props.miss}
-                                                    style={index === props.target ? targetStyle: regularBoxStyle} />)
+                                                    onClick={() => { tryToHit(index) }}
+                                                    style={index === target ? targetStyle: regularBoxStyle} />)
             }
         </div>
     )
