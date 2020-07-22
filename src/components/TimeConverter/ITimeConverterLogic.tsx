@@ -1,4 +1,5 @@
 export default interface ITimeConverterLogic {
-    readonly timeRatios: number[];
-    time: number;
+    readonly times: number[];
+    readonly ratios: number[];
+    setTimeInSeconds: (newTime: number, ratio: number) => void;
 }
