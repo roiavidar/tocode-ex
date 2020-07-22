@@ -1,6 +1,7 @@
 import React from 'react';
-import tinycolor from 'tinycolor2';
-import _ from 'lodash';
+import ColorShadesGenerator from './ColorShadesGenerator';
+
+const colorShadesGenerator = new ColorShadesGenerator();
 
 export default function ColorShades(props: {color: string, numberOfShades: number}) {
     const {color, numberOfShades} = props;
@@ -9,16 +10,16 @@ export default function ColorShades(props: {color: string, numberOfShades: numbe
         width: '100px',
         height: '100px'
     }
-    const selectedColor = tinycolor(color);
+
+    const shades = colorShadesGenerator.getShades(color, numberOfShades);
 
     return (
         <div>
             {
-                _.range(numberOfShades).map((item: number, index: number) => {
-                    selectedColor.setAlpha((index + 1) / numberOfShades);
+                shades.map((shadeColor: string, index: number) => {
                     return (
                         <div
-                            style={{...style, backgroundColor: selectedColor.toRgbString()}}> 
+                            style={{...style, backgroundColor: shadeColor}}> 
                         </div>
                 )})
             }
