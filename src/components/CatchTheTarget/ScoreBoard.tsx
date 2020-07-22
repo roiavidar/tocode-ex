@@ -1,7 +1,8 @@
 import React from 'react';
 
 export function ScoreBoard(props: { score: number }) {
+    const {score} = props;
     return (
-        <div>{props.score} Points !</div>
+        <div>{score} Points !</div>
     )
 }

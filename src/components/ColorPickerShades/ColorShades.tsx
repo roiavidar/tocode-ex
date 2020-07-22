@@ -1,9 +1,9 @@
 import React from 'react';
 import tinycolor from 'tinycolor2';
+import _ from 'lodash';
 
 export default function ColorShades(props: {color: string, numberOfShades: number}) {
     const {color, numberOfShades} = props;
-    const shades: number[] = [...Array(numberOfShades)];
     const style = {
         display: 'inline-block',
         width: '100px',
@@ -14,7 +14,7 @@ export default function ColorShades(props: {color: string, numberOfShades: numbe
     return (
         <div>
             {
-                shades.map((item: number, index: number) => {
+                _.range(numberOfShades).map((item: number, index: number) => {
                     selectedColor.setAlpha((index + 1) / numberOfShades);
                     return (
                         <div

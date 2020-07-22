@@ -6,12 +6,13 @@ export default function Summery(props: {
     country: string,
     city: string
 }) {
+    const {userName, password, country, city} = props;
     return (
         <ul>
-            <li>User name: {props.userName}</li>
-            <li>Password: {props.password}</li>
-            <li>Country: {props.country}</li>
-            <li>City: {props.city}</li>
+            <li>User name: {userName}</li>
+            <li>Password: {password}</li>
+            <li>Country: {country}</li>
+            <li>City: {city}</li>
         </ul>
     )
 }
