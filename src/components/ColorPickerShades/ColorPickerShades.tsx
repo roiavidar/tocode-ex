@@ -13,7 +13,7 @@ export default function ColorPickerShades() {
         <>
             <input type="color" onChange={colorChangedHandler} />
             <div>
-                <ColorShades color={color}/>
+                <ColorShades color={color} numberOfShades={10}/>
             </div>
         </>
     )

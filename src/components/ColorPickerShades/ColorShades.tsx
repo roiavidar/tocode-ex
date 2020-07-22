@@ -1,25 +1,24 @@
 import React from 'react';
 import tinycolor from 'tinycolor2';
 
-export default function ColorShades(props: {color: string}) {
-    const numberOfShades = 10;
+export default function ColorShades(props: {color: string, numberOfShades: number}) {
+    const {color, numberOfShades} = props;
     const shades: number[] = [...Array(numberOfShades)];
     const style = {
         display: 'inline-block',
         width: '100px',
         height: '100px'
     }
-
-    const color = tinycolor(props.color);
+    const selectedColor = tinycolor(color);
 
     return (
         <>
             {
                 shades.map((item: number, index: number) => {
-                    color.setAlpha((index + 1) / numberOfShades);
+                    selectedColor.setAlpha((index + 1) / numberOfShades);
                     return (
                         <div
-                            style={{...style, backgroundColor: color.toRgbString()}}> 
+                            style={{...style, backgroundColor: selectedColor.toRgbString()}}> 
                         </div>
                 )})
             }

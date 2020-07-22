@@ -1,7 +1,8 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 
 export default function ColorPicker(props: {color?: string}) {
-    const [color, setColor] = useState(props.color || '');
+    const {color} = props;
+    const [selectedColor, setSelectedColor] = useState(color || '');
     const style = {
         width: '100px',
         height: '100px'
@@ -9,13 +10,13 @@ export default function ColorPicker(props: {color?: string}) {
 
     function colorChangedHandler(event: ChangeEvent<HTMLInputElement>) {
         const color = event.target.value;
-        setColor(color);
+        setSelectedColor(color);
     }
 
     return(
         <>
-            <input type="color" value={color} onChange={colorChangedHandler}/>
-            <div style={{...style, backgroundColor: color}}></div>
+            <input type="color" value={selectedColor} onChange={colorChangedHandler}/>
+            <div style={{...style, backgroundColor: selectedColor}}></div>
         </>
     )
 }

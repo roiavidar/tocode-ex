@@ -10,17 +10,18 @@ export function FilterList(
         items: any
     }
 ) {
+    const {filterHandler, filterInput, list, items} = props;
     const [filter, setFilter] = React.useState(null);
-    let visibleItems = props.items;
+    let visibleItems = items;
 
     if (filter) {
-        visibleItems = props.filterHandler(filter, props.items);
+        visibleItems = filterHandler(filter, items);
     }
 
     return (
         <div>
-            {props.filterInput(filter, setFilter)}
-            {props.list(visibleItems)}
+            {filterInput(filter, setFilter)}
+            {list(visibleItems)}
         </div>
     )
 }

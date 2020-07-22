@@ -10,6 +10,10 @@ import { CatchTheTarget } from './components/CatchTheTarget/CatchTheTarget';
 import { FilterList } from './components/FilterList/FilterList';
 import { UserForm } from './components/UserForm/UserForm';
 import {SecretNumber} from './components/GuessTheNumber/SecretNumber';
+import PersonalInfo from './components/UserForm/PersonalInfo';
+import LocationInfo from './components/UserForm/LocationInfo';
+import Summery from './components/UserForm/Summery';
+import StepsForm from './components/UserForm/StepsForm';
 
 function App() {
 
@@ -29,6 +33,8 @@ function App() {
        return Math.floor(Math.random() * 1000) + 1
     }
   });
+
+  const stepsForm = new StepsForm();
 
   return (
     <>
@@ -51,7 +57,7 @@ function App() {
     <ColorPickerShades />
     <CatchTheTarget />
     <FilterList items={items} />
-    <UserForm />
+    <UserForm stepsForm={stepsForm} />
     </>
   );
 }
