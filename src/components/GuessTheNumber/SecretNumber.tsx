@@ -1,4 +1,6 @@
-export class SecretNumber {
+import ISecretNumber from "./ISecretNumber";
+
+export class SecretNumber implements ISecretNumber {
     public lie: () => boolean;
     public pickNumber: () => number;
     private secretNumber: number = -1;
