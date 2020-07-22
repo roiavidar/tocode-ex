@@ -1,4 +1,6 @@
-export default class StepsForm {
+import IStepsForm from "./IStepsForm";
+
+export default class StepsForm implements IStepsForm {
     private currentStep: number = 0;
     private steps: JSX.Element[] = [];
     public firstStep: boolean = true;

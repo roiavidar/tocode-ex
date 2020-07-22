@@ -14,6 +14,7 @@ import PersonalInfo from './components/UserForm/PersonalInfo';
 import LocationInfo from './components/UserForm/LocationInfo';
 import Summery from './components/UserForm/Summery';
 import StepsForm from './components/UserForm/StepsForm';
+import { TimeConverterLogic } from './components/TimeConverter/TimeConverterLogic';
 
 function App() {
 
@@ -36,6 +37,10 @@ function App() {
 
   const stepsForm = new StepsForm();
 
+  const timeConverterLogic = new TimeConverterLogic({
+    ratios: [1, 60, 3600]
+  });
+
   return (
     <>
     <MultiInput
@@ -51,7 +56,7 @@ function App() {
           
         }  
     </MultiInput>
-    <TimeConverter />
+    <TimeConverter timeConverterLogic={timeConverterLogic} />
     <GuessTheNumber secretNumber={secretNumber} />
     <ColorPicker color="#dddddd" />
     <ColorPickerShades />

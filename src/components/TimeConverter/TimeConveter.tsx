@@ -1,19 +1,23 @@
 import React, { useState, ChangeEvent } from 'react';
+import ITimeConverterLogic from './ITimeConverterLogic';
 
-export default function TimeConverter() {
-    const [time, setTime] = useState(0);
-    const timeRatios = [1, 60, 3600];
+export default function TimeConverter(props: {
+    timeConverterLogic: ITimeConverterLogic
+}) {
+    const {timeConverterLogic} = props;
+    const [times, setTimes] = useState(timeConverterLogic.timeRatios);
 
-    function convertToSecondsHandler(ratio: number, event: ChangeEvent<HTMLInputElement>) {
-        setTime(Number(event.target.value) * ratio);
+    function convertToSecondsHandler(event: ChangeEvent<HTMLInputElement>) {
+        timeConverterLogic.time = Number(event.target.value);
+        setTimes(timeConverterLogic.timeRatios);
     }
 
     return (
         <>
-            {timeRatios.map((ratio: number) => <input 
+            {times.map((time: number) => <input 
                                                 type="number"
-                                                value={time / ratio}
-                                                onChange={(event: ChangeEvent<HTMLInputElement>) => { convertToSecondsHandler(ratio, event)}} />)}
+                                                value={time}
+                                                onChange={(event: ChangeEvent<HTMLInputElement>) => { convertToSecondsHandler(event)}} />)}
         </> 
     )
 }
