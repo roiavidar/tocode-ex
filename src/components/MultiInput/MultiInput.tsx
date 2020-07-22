@@ -12,10 +12,10 @@ export default function MultiInput(props: {inputsNumber: number, children: Multi
     }
     
     return (
-        <>
+        <div>
             {
                 selectedInputsNumber.map(() => children({text, onChange: onChangeHandler}))
             }
-        </>   
+        </div>   
     )
 }

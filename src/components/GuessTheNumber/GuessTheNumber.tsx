@@ -27,10 +27,10 @@ export default function GuessTheNumber(props:{
     }
 
     return (
-        <>
+        <div>
             <h3>Guess the number !</h3>
             <input type="number" value={guessedNumber} onChange={numberGuessedHandler}/>
             <div>{message}</div>
-        </>
+        </div>
     );
 }

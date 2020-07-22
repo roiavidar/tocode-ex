@@ -34,7 +34,7 @@ export function CatchTheTarget() {
     }
 
     return (
-        <>
+        <div>
             <ScoreBoard score={score} />
             <GameBoard 
                     hit={hitHandler}
@@ -42,6 +42,6 @@ export function CatchTheTarget() {
                     boxes={boxes}
                     target={target} />
             <button onClick={reset}>{newGame}</button>
-        </>
+        </div>
     )
 }

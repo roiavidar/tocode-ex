@@ -12,7 +12,7 @@ export default function ColorShades(props: {color: string, numberOfShades: numbe
     const selectedColor = tinycolor(color);
 
     return (
-        <>
+        <div>
             {
                 shades.map((item: number, index: number) => {
                     selectedColor.setAlpha((index + 1) / numberOfShades);
@@ -22,6 +22,6 @@ export default function ColorShades(props: {color: string, numberOfShades: numbe
                         </div>
                 )})
             }
-        </>
+        </div>
     )
 }

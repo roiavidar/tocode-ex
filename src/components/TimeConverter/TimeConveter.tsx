@@ -13,11 +13,11 @@ export default function TimeConverter(props: {
     }
 
     return (
-        <>
+        <div>
             {times.map((time: number) => <input 
                                                 type="number"
                                                 value={time}
                                                 onChange={(event: ChangeEvent<HTMLInputElement>) => { convertToSecondsHandler(event)}} />)}
-        </> 
+        </div> 
     )
 }

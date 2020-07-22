@@ -11,13 +11,13 @@ export function GameBoard(props: {
     const regularBoxStyle = { backgroundColor: 'grey '};
 
     return (
-        <>
+        <div>
             {
                 inputBoxes.map((box: number, index: number) => <input 
                                                     type="text"
                                                     onClick={index === props.target ? props.hit : props.miss}
                                                     style={index === props.target ? targetStyle: regularBoxStyle} />)
             }
-        </>
+        </div>
     )
 }

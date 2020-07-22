@@ -14,9 +14,9 @@ export default function ColorPicker(props: {color?: string}) {
     }
 
     return(
-        <>
+        <div>
             <input type="color" value={selectedColor} onChange={colorChangedHandler}/>
             <div style={{...style, backgroundColor: selectedColor}}></div>
-        </>
+        </div>
     )
 }
