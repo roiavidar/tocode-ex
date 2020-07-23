@@ -3,10 +3,10 @@ import React from 'react';
 export function SimpleList(props: {
     items: string[]
 }) {
-
+    const {items} = props;
     return (
         <ul>
-            {props.items.map((item: string) => <li>{item}</li>)}
+            {items.map((item: string) => <li>{item}</li>)}
         </ul>
     )
 }

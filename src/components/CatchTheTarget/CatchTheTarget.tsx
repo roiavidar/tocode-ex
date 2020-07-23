@@ -1,46 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ScoreBoard } from './ScoreBoard';
 import { GameBoard } from './GameBoard';
+import ICatchTheTargetLogic from './ICatchTheTarget';
 
-export function CatchTheTarget() {
+export function CatchTheTarget(props: {
+    logic: ICatchTheTargetLogic
+}) {
+    const {logic} = props;
     const newGame = 'New Game';
-    const bonusPoints = 10;
-    const penaltyPoints = -5;
-    const boxes = 10;
-    const [score, setScore] = useState(0);
-    const [target, setTarget] = useState(-1);
+    const [score, setScore] = useState(logic.score);
+    const [target, setTarget] = useState(logic.target);
 
-    useEffect(() => {
-        setTarget(calcTarget());
-    }, [])
+    function tryToHitHandler(box: number) {
+        logic.tryToHit(box);
+        updateState();
+    }
 
     function reset() {
-        switchTarget();
-        setScore(0);
+        logic.reset();
+        updateState();
     }
 
-    function calcTarget() {
-        return Math.floor(Math.random() * boxes);
-    }
-
-    function hitHandler() {
-        switchTarget();
-        // When setting a state relative to the old value
-        // we use a function:
-        // setScore(v => v + bonusPoints)
-        setScore(score + bonusPoints);
-    }
-
-    function switchTarget() {
-        const target = calcTarget();
-        setTarget(target);
-    }
-
-    function missHandler() {
-        // When setting a state relative to the old value
-        // we use a function:
-        // setScore(v => v + penaltyPoints)
-        setScore(score + penaltyPoints);
+    function updateState() {
+        setScore(logic.score);
+        setTarget(logic.target);
     }
 
     // A tiny markup comment:
@@ -56,14 +39,13 @@ export function CatchTheTarget() {
     // </GameControlPanel>
     // or something like that
     return (
-        <>
+        <div>
             <ScoreBoard score={score} />
             <GameBoard 
-                    hit={hitHandler}
-                    miss={missHandler}
-                    boxes={boxes}
+                    tryToHit={tryToHitHandler}
+                    boxes={logic.boxes}
                     target={target} />
             <button onClick={reset}>{newGame}</button>
-        </>
+        </div>
     )
 }

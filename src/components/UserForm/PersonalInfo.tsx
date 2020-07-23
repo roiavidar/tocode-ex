@@ -6,22 +6,23 @@ export default function PersonalInfo(props: {
     password: string,
     setPassword: (password: string) => void
 }) {
+    const {userName, setUserName, password, setPassword} = props;
     const selectUserName = "Please type your user name";
     const selectPassword = "Please type your password"
 
     function handleUserName(event: ChangeEvent<HTMLInputElement>) {
-        props.setUserName(event.target.value);
+        setUserName(event.target.value);
     }
 
 
     function handlePassword(event: ChangeEvent<HTMLInputElement>) {
-        props.setPassword(event.target.value);
+        setPassword(event.target.value);
     }
 
     return (
         <div>
-            <input type="text" value={props.userName} onChange={handleUserName} placeholder={selectUserName}/>
-            <input type="password" value={props.password} onChange={handlePassword} placeholder={selectPassword} />
+            <input type="text" value={userName} onChange={handleUserName} placeholder={selectUserName}/>
+            <input type="password" value={password} onChange={handlePassword} placeholder={selectPassword} />
         </div>
     )
 }

@@ -4,13 +4,8 @@ export function SimpleFilterInput(props: {
     filter: string,
     setFilter: (filter: string) => void
 }) {
-  const { filter, setFilter } = props;
-  // typescript can guess the event type on its own when writing inline handlers
+    const {filter, setFilter} = props;
     return (
-        <input
-          type="text"
-          value={filter}
-          onChange={ev => {setFilter(ev.target.value)}}
-        />
+        <input type="text" value={filter} onChange={(event: ChangeEvent<HTMLInputElement>)=> {setFilter(event.target.value)}}></input>
     )
 }

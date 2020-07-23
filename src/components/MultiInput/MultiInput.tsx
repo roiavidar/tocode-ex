@@ -1,28 +1,21 @@
 import React, { useState, ChangeEvent } from 'react';
 import {MultiInputChildren} from './MultiInput.model';
+import _ from 'lodash';
 
-// This is too long. What's wrong with the simple:
-// function MultiInput(props: { inputsNumber: number }) {
-// }
-
-const multiInputComponent: MultiInputComponent =  function MultiInput(props: MultiInputPropsModel) {
+export default function MultiInput(props: {inputsNumber: number, children: MultiInputChildren}) {
+    const {inputsNumber, children} = props;
     const [text, setText] = useState('');
-
-    const inputsNumber: number[] = [...Array(props.inputsNumber)];
-
-    // Hi - I think this will work better using render props
-    const inputWithProps = React.cloneElement(props.children, {...props.children.props, value: text, onChange: onChangeHandler});
 
     function onChangeHandler(event: ChangeEvent<HTMLInputElement>) {
        setText(event.target.value);
     }
     
     return (
-        <>
+        <div>
             {
-                inputsNumber.map(() => props.children({text, onChange: onChangeHandler}))
+                _.range(inputsNumber).map(() => children({text, onChange: onChangeHandler}))
             }
-        </>   
+        </div>   
     )
 }
 

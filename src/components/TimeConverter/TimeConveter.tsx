@@ -1,28 +1,27 @@
 import React, { useState, ChangeEvent } from 'react';
+import ITimeConverterLogic from './ITimeConverterLogic';
 
-export default function TimeConverter() {
-    const [time, setTime] = useState(0);
-    const timeRatios = [1, 60, 3600];
+export default function TimeConverter(props: {
+    timeConverterLogic: ITimeConverterLogic
+}) {
+    const {timeConverterLogic} = props;
+    const [times, setTimes] = useState(timeConverterLogic.times);
 
-    function convertToSecondsHandler(ratio: number, event: ChangeEvent<HTMLInputElement>) {
-        setTime(Number(event.target.value) * ratio);
+    function convertToSecondsHandler(event: ChangeEvent<HTMLInputElement>, index: number) {
+        const ratio = timeConverterLogic.ratios[index];
+        timeConverterLogic.setTimeInSeconds(Number(event.target.value), ratio);
+        setTimes(timeConverterLogic.times);
     }
 
     // Woudldn't it be nicer to skip the Fragment and the inner curlies?
     // i.e. return timeRatios.map(...)
     return (
-        <>
-            {
-            // I love bind, but I must say I'm in the minority here
-            // most React devs these days will use arrow functions
-            // so better to use:
-            // onChange={(e) => convertToSeconds(ratio, e)}
-                timeRatios.map((ratio: number) => <input
-                    type="text"
-                    value={time / ratio}                    
-                    onChange={convertToSeconds.bind(null, ratio)} />)
-            }
-        </>
+        <div>
+            {times.map((time: number, index: number) => <input 
+                                                type="number"
+                                                value={time}
+                                                onChange={(event: ChangeEvent<HTMLInputElement>) => { convertToSecondsHandler(event, index)}} />)}
+        </div> 
     )
 }
 

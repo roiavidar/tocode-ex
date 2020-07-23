@@ -1,31 +1,28 @@
 import React from 'react';
-import { ColorShadesPropsModel } from './ColorShadesPropsModel';
-// It's nicer to stay with one import syntax:
-// import tinycolor from 'tinycolor2';
-var tinycolor = require("tinycolor2");
+import ColorShadesGenerator from './ColorShadesGenerator';
 
-export default function ColorShades(props: {color: string}) {
-    const numberOfShades = 10;
-    const shades: number[] = [...Array(numberOfShades)];
+const colorShadesGenerator = new ColorShadesGenerator();
+
+export default function ColorShades(props: {color: string, numberOfShades: number}) {
+    const {color, numberOfShades} = props;
     const style = {
         display: 'inline-block',
         width: '100px',
         height: '100px'
     }
 
-    const color = tinycolor(props.color);
+    const shades = colorShadesGenerator.getShades(color, numberOfShades);
 
     return (
-        <>
+        <div>
             {
-                shades.map((item: number, index: number) => {
-                    color.setAlpha((index + 1) / numberOfShades);
+                shades.map((shadeColor: string, index: number) => {
                     return (
                         <div
-                            style={{...style, backgroundColor: color.toRgbString()}}> 
+                            style={{...style, backgroundColor: shadeColor}}> 
                         </div>
                 )})
             }
-        </>
+        </div>
     )
 }
