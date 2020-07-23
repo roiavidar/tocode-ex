@@ -1,7 +1,7 @@
 import { EMPTY_CELL } from "./constants";
-import { IGameCell } from "./TicTacToe.model";
+import { IGameCell, IAI } from "./TicTacToe.model";
 
-export class AI {
+export class AI implements IAI {
     getMark(board: IGameCell[][], computerSymbol: number) {
         let row = 0;
         while(row < board.length){

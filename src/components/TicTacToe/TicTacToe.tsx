@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {GameState} from './TicTacToe.model';
+import {GameState, IAI} from './TicTacToe.model';
 import GameModePvP from './GameModePvP';
 import GameModePvE from './GameModePvE';
 import TicTacToeBoard from './TicTacToeBoard';
@@ -16,22 +16,23 @@ const gameModePvP = new GameModePvP();
 
 export default function TicTacToe(props: {
     gameSpeed: number,
-    AI?: { isFirst: boolean }
+    computerAI?: { isFirst: boolean, logic: IAI }
 }) {
-    const {gameSpeed, AI} = props;
+    const {gameSpeed, computerAI} = props;
 
     useEffect(() => {
-        if (AI) {
-            gameModePvE.computerTurn = AI.isFirst ? FIRST_PLAYER : SECOND_PLAYER;
+        if (computerAI) {
+            gameModePvE.computerTurn = computerAI.isFirst ? FIRST_PLAYER : SECOND_PLAYER;
+            gameModePvE.computerAI = computerAI.logic || gameModePvE.computerAI;
         }
-    }, [])
+    }, []);
 
-    let logic = !!AI ? gameModePvE : gameModePvP;
+    let logic = !!computerAI ? gameModePvE : gameModePvP;
     const [players, setPlayers] = useState(logic.GameState.players);
     const [scores, setScores] = useState(logic.GameState.scores);
     const [winner, setWinner] = useState(logic.GameState.winner);
     const [board, setBoard] = useState(logic.GameState.board);
-    const [isAIGameMode, setAIGameMode] = useState(!!AI);
+    const [isAIGameMode, setAIGameMode] = useState(!!computerAI);
 
     function updateGameState(game: GameState) {
         setScores([...game.scores]);
@@ -51,7 +52,7 @@ export default function TicTacToe(props: {
             {
                 isAIGameMode
                 ?
-                <TicTacToeBoard board={board} logic={gameModePvE} gameSpeed={gameSpeed} updateGameState={updateGameState} />
+                <TicTacToeBoard board={board} logic={gameModePvE} gameSpeed={gameSpeed} updateGameState={updateGameState}/>
                 :
                 <TicTacToeBoard board={board} logic={gameModePvP} gameSpeed={gameSpeed} updateGameState={updateGameState}/> 
             }

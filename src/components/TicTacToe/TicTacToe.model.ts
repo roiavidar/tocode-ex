@@ -24,3 +24,7 @@ export interface Score {
     score: number;
     player: number
 }
+
+export interface IAI {
+    getMark: (board: IGameCell[][], computerSymbol: number) => {row: number, col: number};
+}

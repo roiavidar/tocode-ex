@@ -1,11 +1,11 @@
 import GameMode from './GameMode';
 import {GameState} from './TicTacToe.model';
 import { AI } from './AI';
-import { NO_ROW, NO_WINNER } from './constants';
+import { NO_WINNER } from './constants';
 
 export default class GameModePvE extends GameMode {
     public computerTurn: number = 1;
-    private computerAI: AI;
+    public computerAI: AI;
 
     constructor(props: {
         computerAI: AI,
