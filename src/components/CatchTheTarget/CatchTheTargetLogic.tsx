@@ -1,8 +1,10 @@
 import ICatchTheTarget from "./ICatchTheTarget";
 
 export default class CatchTheTargetLogic implements ICatchTheTarget {
+  // Why are some data members start with _ and others don't?
     private bonusPoints: number = 0;
     private penaltyPoints: number = 0;
+    // I couldn't find who uses 
     private _boxes: number = 0;
     private calcTarget: () => number;
     private _target: number = -1;

@@ -50,6 +50,14 @@ export default function TicTacToe(props: {
     return (
         <div>
             {
+            // wait - it's the same component
+            // why not:
+            /* <TicTacToeBoard */
+            /*       board={board} */
+            /*       logic={isAIGameMode ? gameModePvE : gameModePvP} */
+            /*       gameSpeed={gameSpeed} */
+            /*       updateGameState={updateGameState} */
+            /*  /> */
                 isAIGameMode
                 ?
                 <TicTacToeBoard board={board} logic={gameModePvE} gameSpeed={gameSpeed} updateGameState={updateGameState}/>

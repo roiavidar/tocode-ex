@@ -34,6 +34,7 @@ export default function TicTacToeBoard(props: {
     const {logic, gameSpeed, updateGameState, board} = props;
     const [gameLocked, setGameLocked] = useState(false);
 
+    // Can you explain what this function should do?
     function tryToMark(row: number, col: number) {
         if (gameLocked) return;
         const gameSnapshots = logic.tryToMark(row, col);
@@ -53,6 +54,10 @@ export default function TicTacToeBoard(props: {
         updateGameState(game);
     }
 
+    // Great! and now here's the interesting bit - 
+    // this function is not "tied" to this component
+    // it's possible (and sometimes useful) to move it outside
+    // to a helper file
     function getCellStyle(cell: IGameCell) {
         let style;
         if (cell.state === FLICKER) {
@@ -78,6 +83,7 @@ export default function TicTacToeBoard(props: {
                                     return (
                                         <div style={getCellStyle(cell)} onClick={() => { tryToMark(rowIndex, colIndex) }}>
                                             {
+                                            // Nested ternary ????
                                                 cell.player !== FIRST_PLAYER ? (cell.player === SECOND_PLAYER ? 'O' : '') : 'X'
                                             }
                                         </div>

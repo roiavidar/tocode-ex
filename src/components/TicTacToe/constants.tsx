@@ -1,3 +1,5 @@
+// TypeScript supports enums, and it may be nicer here:
+// https://www.typescriptlang.org/docs/handbook/enums.html
 export const EMPTY_CELL = undefined;
 export const FIRST_PLAYER = 0;
 export const SECOND_PLAYER = 2;
