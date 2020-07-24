@@ -24,6 +24,8 @@ export default function TicTacToe(props: {
         if (computerAI) {
             gameModePvE.computerTurn = computerAI.isFirst ? FIRST_PLAYER : SECOND_PLAYER;
             gameModePvE.computerAI = computerAI.logic || gameModePvE.computerAI;
+
+           triggerComputerToStart(isAIGameMode);
         }
     }, []);
 
@@ -45,6 +47,14 @@ export default function TicTacToe(props: {
         const gameState = !isAIGameMode ? gameModePvP.reset() : gameModePvE.reset();
         setAIGameMode(!isAIGameMode);
         updateGameState(gameState);
+        triggerComputerToStart(!isAIGameMode);
+    }
+
+    function triggerComputerToStart(isAIGameMode: boolean) {
+        if (isAIGameMode && computerAI && computerAI.isFirst) {
+            const gameState = gameModePvE.newGame();
+            updateGameState(gameState);
+        }
     }
 
     return (

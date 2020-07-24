@@ -71,7 +71,7 @@ function App() {
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
     <UserForm stepsForm={stepsForm} />
-    <TicTacToe gameSpeed={1500} computerAI={{isFirst: false, logic: new AI()}} />
+    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} />
     </>
   );
 }
