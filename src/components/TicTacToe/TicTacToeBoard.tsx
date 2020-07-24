@@ -1,25 +1,6 @@
 import React, { useState } from 'react';
 import {ITicTacToeService, GameState, IGameCell} from './TicTacToe.model';
-import { FIRST_PLAYER, SECOND_PLAYER, FLICKER, FADE } from './constants';
-
-const flickringStyle = {
-    backgroundColor: 'red'
-}
-
-const fadeStyle = {
-    backgroundColor: 'black',
-    color: 'white'
-}
-
-const cellStyle = {
-    width: '100px',
-    height: '100px',
-    display: 'inline-block',
-    backgroundColor: 'grey',
-    border: '1px solid white',
-    textAlign: 'center' as const,
-    lineHeight: '100px'
-}
+import {getCellStyle, getMarkSymbol} from './BoardStyleUtil';
 
 const rowStyle = {
     display: 'flex'
@@ -53,18 +34,28 @@ export default function TicTacToeBoard(props: {
         updateGameState(game);
     }
 
-    function getCellStyle(cell: IGameCell) {
-        let style;
-        if (cell.state === FLICKER) {
-            style = flickringStyle;
-        }
-        if (cell.state === FADE) {
-            style = fadeStyle;
-        }
-        return {
-            ...cellStyle,
-            ...style
-        };
+    function renderCell(cell: IGameCell, colIndex: number, rowIndex: number) {
+        return (
+            <div style={getCellStyle(cell)} onClick={() => { tryToMark(rowIndex, colIndex) }}>
+                        {
+                            getMarkSymbol(cell)
+                        }
+            </div>
+        )
+    }
+
+    function renderRow(row: IGameCell[], rowIndex: number) {
+        return (
+            <div style={rowStyle}>
+            {
+                row.map((cell: IGameCell, colIndex: number) => {
+                    return (
+                        renderCell(cell, colIndex, rowIndex)
+                    )
+                })
+            }
+            </div>
+        )
     }
 
     return (
@@ -72,19 +63,7 @@ export default function TicTacToeBoard(props: {
             {
                 board.map((row: IGameCell[], rowIndex: number) => {
                     return (
-                        <div style={rowStyle}>
-                            {
-                                row.map((cell: IGameCell, colIndex: number) => {
-                                    return (
-                                        <div style={getCellStyle(cell)} onClick={() => { tryToMark(rowIndex, colIndex) }}>
-                                            {
-                                                cell.player !== FIRST_PLAYER ? (cell.player === SECOND_PLAYER ? 'O' : '') : 'X'
-                                            }
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                       renderRow(row, rowIndex)
                     )
                 })
             }

@@ -49,13 +49,11 @@ export default function TicTacToe(props: {
 
     return (
         <div>
-            {
-                isAIGameMode
-                ?
-                <TicTacToeBoard board={board} logic={gameModePvE} gameSpeed={gameSpeed} updateGameState={updateGameState}/>
-                :
-                <TicTacToeBoard board={board} logic={gameModePvP} gameSpeed={gameSpeed} updateGameState={updateGameState}/> 
-            }
+            <TicTacToeBoard 
+                    board={board}
+                    logic={isAIGameMode ? gameModePvE : gameModePvP}
+                    gameSpeed={gameSpeed}
+                    updateGameState={updateGameState}/>
             <ScoreTicTacToe 
                 players={players}
                 scores={scores} />
