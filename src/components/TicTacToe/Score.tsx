@@ -1,6 +1,8 @@
 import React from 'react';
 import {Score, IPlayers} from './TicTacToe.model';
-import { TIE } from './constants';
+import TicTacToe from './constants';
+
+const { TIE } = TicTacToe;
 
 const scoreStyle = {
     display: 'inline-block',

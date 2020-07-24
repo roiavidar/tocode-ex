@@ -1,7 +1,9 @@
 import {ITicTacToeService, IGameCell, Score, IPlayers} from './TicTacToe.model';
 import {GameState} from './TicTacToe.model';
-import { FIRST_PLAYER, SECOND_PLAYER, EMPTY_CELL, FLICKER, FADE, NO_WINNER, TIE, SCORE_TIE_INDEX } from './constants';
+import TicTacToe, {EMPTY_CELL} from './constants';
 import _ from 'lodash';
+
+const { FIRST_PLAYER, SECOND_PLAYER, FLICKER, FADE, NO_WINNER, TIE, SCORE_TIE_INDEX } = TicTacToe;
 
 export default class GameMode implements ITicTacToeService {
     protected board: IGameCell[][] = this.createNewBoard();

@@ -4,9 +4,11 @@ import GameModePvP from './GameModePvP';
 import GameModePvE from './GameModePvE';
 import TicTacToeBoard from './TicTacToeBoard';
 import { AI } from './AI';
-import { FIRST_PLAYER, SECOND_PLAYER } from './constants';
+import TicTacToeEnum  from './constants';
 import ScoreTicTacToe from './Score';
 import GameModeSwitcher from './GameModeSwitcher';
+
+const { FIRST_PLAYER, SECOND_PLAYER } = TicTacToeEnum;
 
 const gameModePvE = new GameModePvE({
     computerAI: new AI(),
