@@ -13,6 +13,8 @@ import {SecretNumber} from './components/GuessTheNumber/SecretNumber';
 import StepsForm from './components/UserForm/StepsForm';
 import { TimeConverterLogic } from './components/TimeConverter/TimeConverterLogic';
 import CatchTheTargetLogic from './components/CatchTheTarget/CatchTheTargetLogic';
+import TicTacToe from './components/TicTacToe/TicTacToe';
+import { AI } from './components/TicTacToe/AI';
 
 function App() {
 
@@ -69,6 +71,7 @@ function App() {
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
     <UserForm stepsForm={stepsForm} />
+    <TicTacToe gameSpeed={1500} computerAI={{isFirst: false, logic: new AI()}} />
     </>
   );
 }
