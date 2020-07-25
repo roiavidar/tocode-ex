@@ -1,38 +1,17 @@
-import React, { useState } from 'react';
-import {ITicTacToeService, GameState, IGameCell} from './TicTacToe.model';
-import {getCellStyle, getMarkSymbol} from './BoardStyleUtil';
+import React, { CSSProperties } from 'react';
+import { IGameCell } from './TicTacToe.model';
 
 const rowStyle = {
     display: 'flex'
 }
 
 export default function TicTacToeBoard(props: {
-    logic: ITicTacToeService,
-    gameSpeed: number,
-    updateGameState: (gameState: GameState) => void,
-    board: IGameCell[][]
+    board: IGameCell[][],
+    tryToMark: (row: number,col: number) => void,
+    getCellStyle: (cell: IGameCell) => CSSProperties,
+    getMarkSymbol: (cell: IGameCell) => string
 }) {
-    const {logic, gameSpeed, updateGameState, board} = props;
-    const [gameLocked, setGameLocked] = useState(false);
-
-    function tryToMark(row: number, col: number) {
-        if (gameLocked) return;
-        const gameSnapshots = logic.tryToMark(row, col);
-        setGameLocked(true);
-
-        gameSnapshots.forEach((game: GameState, index: number) => {
-            setTimeout(() => {
-                setGameState(game);
-                if (index === gameSnapshots.length - 1) {
-                    setGameLocked(false);
-                }
-            }, gameSpeed*index);
-        });
-    }
-
-    function setGameState(game: GameState) {
-        updateGameState(game);
-    }
+    const {board, tryToMark, getCellStyle, getMarkSymbol} = props;
 
     function renderCell(cell: IGameCell, colIndex: number, rowIndex: number) {
         return (

@@ -7,6 +7,7 @@ import { AI } from './AI';
 import TicTacToeEnum  from './constants';
 import ScoreTicTacToe from './Score';
 import GameModeSwitcher from './GameModeSwitcher';
+import {getCellStyle, getMarkSymbol} from './BoardStyleUtil';
 
 const { FIRST_PLAYER, SECOND_PLAYER } = TicTacToeEnum;
 
@@ -31,12 +32,13 @@ export default function TicTacToe(props: {
         }
     }, []);
 
-    let logic = !!computerAI ? gameModePvE : gameModePvP;
+    const [isAIGameMode, setAIGameMode] = useState(false);
+    let logic = getGameModeLogic();
     const [players, setPlayers] = useState(logic.GameState.players);
     const [scores, setScores] = useState(logic.GameState.scores);
     const [winner, setWinner] = useState(logic.GameState.winner);
     const [board, setBoard] = useState(logic.GameState.board);
-    const [isAIGameMode, setAIGameMode] = useState(!!computerAI);
+    const [gameLocked, setGameLocked] = useState(false);
 
     function updateGameState(game: GameState) {
         setScores([...game.scores]);
@@ -59,13 +61,33 @@ export default function TicTacToe(props: {
         }
     }
 
+    function tryToMark(row: number, col: number) {
+        if (gameLocked) return;
+        const logic = getGameModeLogic();
+        const gameSnapshots = logic.tryToMark(row, col);
+        setGameLocked(true);
+
+        gameSnapshots.forEach((game: GameState, index: number) => {
+            setTimeout(() => {
+                updateGameState(game);
+                if (index === gameSnapshots.length - 1) {
+                    setGameLocked(false);
+                }
+            }, gameSpeed*index);
+        });
+    }
+
+    function getGameModeLogic() {
+        return isAIGameMode ? gameModePvE : gameModePvP;
+    }
+
     return (
         <div>
             <TicTacToeBoard 
                     board={board}
-                    logic={isAIGameMode ? gameModePvE : gameModePvP}
-                    gameSpeed={gameSpeed}
-                    updateGameState={updateGameState}/>
+                    tryToMark={tryToMark}
+                    getCellStyle={getCellStyle}
+                    getMarkSymbol={getMarkSymbol}/>
             <ScoreTicTacToe 
                 players={players}
                 scores={scores} />
