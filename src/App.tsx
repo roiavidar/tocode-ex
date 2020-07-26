@@ -67,7 +67,7 @@ function App() {
 
   return (
     <>
-    <MultiInput
+    {/* <MultiInput
       inputsNumber={5}>
         {
           ({text, onChange}: InputProps) => <input
@@ -87,7 +87,7 @@ function App() {
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
     <UserForm stepsForm={stepsForm} />
-    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} />
+    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> */}
     <SortableTable sortableService={sortableTable} />
     </>
   );

@@ -15,7 +15,7 @@ function SortableTable(props: {
             <tr key={row.join(' ')}>
                 {
                     row.map((text: string) => (
-                        <td>{text}</td>
+                        <td key={text}>{text}</td>
                     ))
                 }
             </tr>
@@ -27,7 +27,7 @@ function SortableTable(props: {
             <tr key={'headers'}>
                 {
                     headerRow.map((text: string, index: number) => (
-                        <th onClick={() => {sortableService.sort(index)}} >{text}</th>
+                        <th key={text} onClick={() => {sortableService.sort(index)}} >{text}</th>
                     ))
                 }
             </tr>
