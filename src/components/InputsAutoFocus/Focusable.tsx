@@ -13,7 +13,6 @@ export default function Focusable(props: {
         }
     }, [focus]);
 
-
     return (
        React.cloneElement(children, {ref: refToInput})
     )

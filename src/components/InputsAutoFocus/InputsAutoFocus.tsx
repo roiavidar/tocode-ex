@@ -33,6 +33,8 @@ export default function InputsAutoFocus(props: {
                         type="text"
                         value={char}
                         tabIndex={1}
+                        onClick={() => { setCurrentFocus(index) }}
+                        onKeyPress={() => { setCurrentFocus(index) }}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => { updateState(event.target.value, index) }} />
                 </Focusable>
             ))
