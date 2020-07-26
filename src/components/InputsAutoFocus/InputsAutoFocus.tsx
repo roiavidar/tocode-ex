@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import InputAutoFocus from './InputAutoFocus';
+import React, { useState, ChangeEvent } from 'react';
+import Focusable from './InputAutoFocus';
 
 export default function InputsAutoFocus(props: {
     inputsNumber: number
@@ -27,11 +27,14 @@ export default function InputsAutoFocus(props: {
         <div>
         {
             characters.map((char: string, index: number) => (
-                <InputAutoFocus
-                    key={index}
-                    value={char}
-                    updateValue={(value: string) => {updateState(value, index)}}
-                    focus={currentFocus === index} />
+                <Focusable focus={currentFocus === index}>
+                    <input 
+                        key={index}
+                        type="text"
+                        value={char}
+                        tabIndex={1}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => { updateState(event.target.value, index) }} />
+                </Focusable>
             ))
         }
         </div>

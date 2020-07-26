@@ -1,11 +1,10 @@
-import React, { useRef, ChangeEvent, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
-export default function InputAutoFocus(props: {
-    updateValue: (newValue: string) => void
-    value: string,
+export default function Focusable(props: {
     focus: boolean,
+    children: JSX.Element
 }) {
-    const {updateValue, value, focus} = props;
+    const {children, focus} = props;
     const refToInput = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -16,11 +15,6 @@ export default function InputAutoFocus(props: {
 
 
     return (
-        <input 
-            type="text"
-            ref={refToInput}
-            value={value}
-            tabIndex={1}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => { updateValue(event.target.value) }} />
+       React.cloneElement(children, {ref: refToInput})
     )
 }
