@@ -17,7 +17,7 @@ import TicTacToe from './components/TicTacToe/TicTacToe';
 import { AI } from './components/TicTacToe/AI';
 import SortableTable from './components/SortableTable/SortableTable';
 import SortableTableService from './components/SortableTable/SortableTable.service';
-import InputsAutoFocus from './components/InputsSwitchingFocus/InputsAutoFocus';
+import InputsAutoFocus from './components/InputsAutoFocus/InputsAutoFocus';
 import StateForm from './components/RefFormVSStateForm/StateForm';
 import RefForm from './components/RefFormVSStateForm/RefForm';
 
