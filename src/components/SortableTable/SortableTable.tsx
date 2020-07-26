@@ -5,29 +5,34 @@ import { observer } from 'mobx-react';
 import TableDetails from './TableDetails';
 
 function SortableTable(props: {
-    sortableService: ISortableService
+    sortableService: ISortableService,
+    getRowKey: (cell: any) => string,
+    getCellKey: (cell: any) => string,
+    getCell: (cell: any) => JSX.Element,
+    getHeaderCell: (cell: any) => JSX.Element,
+    getHeaderCellKey: (cell: any) => string
 }) {
-    const {sortableService} = props;
+    const {sortableService, getRowKey, getCellKey, getCell, getHeaderCell, getHeaderCellKey} = props;
     const data = sortableService.SortedTable;
 
-    function renderRow(row: string[]) {
+    function renderRow(row: any[]) {
         return (
-            <tr key={row.join(' ')}>
+            <tr key={getRowKey(row)}>
                 {
-                    row.map((text: string) => (
-                        <td key={text}>{text}</td>
+                    row.map((cell: any) => (
+                        <td key={getCellKey(cell)}>{getCell(cell)}</td>
                     ))
                 }
             </tr>
         )
     }
 
-    function renderHeaderRow(headerRow: string[]) {
+    function renderHeaderRow(headerRow: any[]) {
         return (
             <tr key={'headers'}>
                 {
-                    headerRow.map((text: string, index: number) => (
-                        <th key={text} onClick={() => {sortableService.sort(index)}} >{text}</th>
+                    headerRow.map((headerCell: any, index: number) => (
+                        <th key={getHeaderCellKey(headerCell)} onClick={() => {sortableService.sort(index)}} >{getHeaderCell(headerCell)}</th>
                     ))
                 }
             </tr>
@@ -41,7 +46,7 @@ function SortableTable(props: {
                     {renderHeaderRow(data[0])}
                 </thead>
                 <tbody>
-                    {data.map((row: string[], index: number) => {
+                    {data.map((row: any[], index: number) => {
                         if (index === 0) return null;
                         return (
                             renderRow(row)
@@ -54,12 +59,37 @@ function SortableTable(props: {
     )
 }
 
-export default observer(SortableTable);
-
 function sortLogic(itemA: string, itemB: string) {
     return itemA.localeCompare(itemB);
 }
 
+function getRowKey(row: string[]) {
+    return row.join(' ');
+}
+
+function getCellKey(cell: string) {
+    return cell;
+}
+
+function getCell(cell: string) {
+    return cell;
+}
+
+function getHeaderCellKey(headerCell: string) {
+    return headerCell;
+}
+
+function getHeaderCell(headerCell: string) {
+    return headerCell;
+}
+
 SortableTable.defaultProps = {
-    sortableService: new SortableTableService(sortLogic)
+    sortableService: new SortableTableService(sortLogic),
+    getRowKey,
+    getCellKey,
+    getCell,
+    getHeaderCell,
+    getHeaderCellKey
 };
+
+export default observer(SortableTable);

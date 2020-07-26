@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, findByText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import SortableTableService from './SortableTable.service';
 import SortableTable from './SortableTable';
 
