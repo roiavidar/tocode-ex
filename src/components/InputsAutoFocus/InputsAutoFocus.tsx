@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import Focusable from './InputAutoFocus';
+import Focusable from './Focusable';
 
 export default function InputsAutoFocus(props: {
     inputsNumber: number
