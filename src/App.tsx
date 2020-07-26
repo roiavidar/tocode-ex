@@ -17,6 +17,7 @@ import TicTacToe from './components/TicTacToe/TicTacToe';
 import { AI } from './components/TicTacToe/AI';
 import SortableTable from './components/SortableTable/SortableTable';
 import SortableTableService from './components/SortableTable/SortableTable.service';
+import InputsAutoFocus from './components/InputsSwitchingFocus/InputsAutoFocus';
 
 function App() {
 
@@ -89,6 +90,7 @@ function App() {
     <UserForm stepsForm={stepsForm} />
     <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> */}
     <SortableTable sortableService={sortableTable} />
+    <InputsAutoFocus inputsNumber={6} />
     </>
   );
 }
