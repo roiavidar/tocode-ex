@@ -1,19 +1,19 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect, RefObject } from 'react';
 
 export default function Focusable(props: {
     focus: boolean,
-    children: JSX.Element
+    renderItem: (refToElem: RefObject<any>) => JSX.Element
 }) {
-    const {children, focus} = props;
-    const refToInput = useRef<HTMLInputElement>(null);
+    const {focus, renderItem} = props;
+    const refToElem = useRef<any>(null);
 
     useEffect(() => {
-        if(focus && refToInput.current) {
-            refToInput.current.focus();
+        if(focus && refToElem.current) {
+            refToElem.current.focus();
         }
     }, [focus]);
 
     return (
-       React.cloneElement(children, {ref: refToInput})
+       renderItem(refToElem)
     )
 }

@@ -20,6 +20,15 @@ import SortableTableService from './components/SortableTable/SortableTable.servi
 import InputsAutoFocus from './components/InputsAutoFocus/InputsAutoFocus';
 import StateForm from './components/RefFormVSStateForm/StateForm';
 import RefForm from './components/RefFormVSStateForm/RefForm';
+import MoviePlayer from './components/MoviePlayer/MoviePlayer';
+import FetchStarWarsData from './components/FetchData/FetchData';
+import StarWarsMovie from './components/StarWarsMovie/StarWarsMovie';
+import StarWarsUrlBuilder from './services/StartWarsUrlBuilder';
+import ActorMoviesCard from './components/ActorMoviesCard.tsx/ActorMoviesCard';
+import VimeoMovieService from './components/MoviePlayer/VimeoMovieService';
+import PersonalInfo from './components/UserForm/PersonalInfo';
+import LocationInfo from './components/UserForm/LocationInfo';
+import Summery from './components/UserForm/Summery';
 
 function App() {
 
@@ -68,6 +77,8 @@ function App() {
       return itemA.localeCompare(itemB);
   }
 
+  const starWarsUrlBuilder = new StarWarsUrlBuilder();
+ 
   return (
     <>
     {/* <MultiInput
@@ -89,12 +100,24 @@ function App() {
     <ColorPickerShades />
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
-    <UserForm stepsForm={stepsForm} />
-    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> */}
+    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> 
+      */}
+    <UserForm stepsForm={stepsForm}>
+        <PersonalInfo />
+        <LocationInfo />
+        <Summery />
+    </UserForm>
     <SortableTable sortableService={sortableTable} />
     <InputsAutoFocus inputsNumber={6} />
-    <StateForm />
+    <StateForm /> 
     <RefForm />
+    <MoviePlayer movieId={25323516} moviePlayer={new VimeoMovieService()} />
+    <FetchStarWarsData 
+        url={starWarsUrlBuilder.getUrl('1', 'films')}
+        renderItem={(data: any)=> (
+        <StarWarsMovie {...data} />
+      )} />
+      <ActorMoviesCard actorId={'1'} />
     </>
   );
 }

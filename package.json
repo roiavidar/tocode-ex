@@ -3,26 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^24.9.1",
+    "@types/jquery": "^3.5.0",
     "@types/node": "^12.12.50",
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "@types/vimeo__player": "^2.9.0",
+    "@vimeo/player": "^2.12.2",
+    "jquery": "^3.5.1",
     "lodash": "^4.17.19",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "tinycolor2": "^1.4.1",
-    "typescript": "^3.7.5",
-    "mobx": "^5.15.4",
-    "mobx-react": "^6.2.2"
+    "typescript": "^3.7.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,7 +43,10 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.1",
+    "@testing-library/react": "^10.4.7",
     "@types/lodash": "^4.14.158",
-    "@types/tinycolor2": "^1.4.2"
+    "@types/tinycolor2": "^1.4.2",
+    "jest-environment-jsdom-sixteen": "^1.0.3"
   }
 }

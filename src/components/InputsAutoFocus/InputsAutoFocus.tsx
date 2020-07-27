@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, RefObject } from 'react';
 import Focusable from './Focusable';
 
 export default function InputsAutoFocus(props: {
@@ -27,16 +27,20 @@ export default function InputsAutoFocus(props: {
         <div>
         {
             characters.map((char: string, index: number) => (
-                <Focusable focus={currentFocus === index}>
-                    <input 
-                        key={index}
-                        type="text"
-                        value={char}
-                        tabIndex={1}
-                        onClick={() => { setCurrentFocus(index) }}
-                        onKeyPress={() => { setCurrentFocus(index) }}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => { updateState(event.target.value, index) }} />
-                </Focusable>
+                <Focusable 
+                    key={index}
+                    focus={currentFocus === index}
+                    renderItem={(refElemToFocus: RefObject<any>) => (
+                        <input 
+                            ref={refElemToFocus}
+                            key={index}
+                            type="text"
+                            value={char}
+                            tabIndex={1}
+                            onClick={() => { setCurrentFocus(index) }}
+                            onKeyPress={() => { setCurrentFocus(index) }}
+                            onChange={(event: ChangeEvent<HTMLInputElement>) => { updateState(event.target.value, index) }} />
+                    )} />
             ))
         }
         </div>

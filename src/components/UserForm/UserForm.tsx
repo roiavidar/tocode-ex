@@ -1,34 +1,17 @@
 import React, { useState } from 'react';
-import PersonalInfo from './PersonalInfo';
-import LocationInfo from './LocationInfo';
-import Summery from './Summery';
 import IStepsForm from './IStepsForm';
 
 export function UserForm(props: {
-    stepsForm: IStepsForm
+    stepsForm: IStepsForm,
+    children: JSX.Element[]
 }) {
-    const {stepsForm} = props;
+    const {stepsForm, children} = props;
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
-    const steps = [
-        <PersonalInfo 
-            userName={userName}
-            setUserName={setUserName}
-            password={password}
-            setPassword={setPassword} />,
-        <LocationInfo 
-            country={country}
-            setCountry={setCountry} 
-            city={city} 
-            setCity={setCity} />,
-        <Summery 
-            userName={userName} 
-            password={password} 
-            country={country} 
-            city={city}/>
-      ];
+    const steps = children;
+    const childProps = {userName, setUserName, password, setPassword, country, setCountry, city, setCity};
     const [currentStep, setCurrentStep] = useState(steps[0].type.name);
     
     stepsForm.setup({steps, currentStep});
@@ -52,7 +35,7 @@ export function UserForm(props: {
         <div>
             <h3>{userFormTitle}</h3>
             {
-                 React.cloneElement(stepsForm.currentStepElem)
+                 React.cloneElement(stepsForm.currentStepElem, childProps)
             }
             <div>
                 <button
