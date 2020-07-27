@@ -6,10 +6,10 @@ import StarWarsActor from '../StarWarsActor/StarWarsActor';
 import { isEmptyObject } from 'jquery';
 
 export default function ActorMoviesCard(props: {
-    actorId: string
+    actorId?: string
 }) {
     const { actorId } = props;
-    const [actor, setActorId] = useState<string>(actorId);
+    const [actor, setActorId] = useState<string>(actorId || '');
     const [films, setFilms] = useState<string[]>([]);
     const starWarsUrlBuilder = new StarWarsUrlBuilder();
 
