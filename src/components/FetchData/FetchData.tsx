@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import $ from 'jquery';
 
-export default function FetchStarWarsData(props: {
-    itemId: string,
-    category: string,
+export default function FetchData(props: {
+    url: string,
     dataFetched?: (data: any) => void
     renderItem: (data: any) => JSX.Element
 }) {
-    const {itemId, category, renderItem, dataFetched} = props;
+    const {url, renderItem, dataFetched} = props;
     const [data, setData] = useState({});
 
     useEffect(() => {
-        const xhr = $.getJSON(`http://swapi.dev/api/${category}/${itemId}/`, function success(data: any) {
+        const xhr = $.getJSON(url, function success(data: any) {
             updateData(data);
         });
 
@@ -19,7 +18,7 @@ export default function FetchStarWarsData(props: {
             updateData({});
             xhr.abort();
         };
-    }, [itemId, category]);
+    }, [url]);
 
     function updateData(data: any) {
         setData(data);

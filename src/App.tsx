@@ -21,8 +21,10 @@ import InputsAutoFocus from './components/InputsAutoFocus/InputsAutoFocus';
 import StateForm from './components/RefFormVSStateForm/StateForm';
 import RefForm from './components/RefFormVSStateForm/RefForm';
 import MoviePlayer from './components/MoviePlayer/MoviePlayer';
-import FetchStarWarsData from './components/FetchStarWarsData/FetchStarWarsData';
+import FetchStarWarsData from './components/FetchData/FetchData';
 import StarWarsMovie from './components/StarWarsMovie/StarWarsMovie';
+import StarWarsUrlBuilder from './services/StartWarsUrlBuilder';
+import ActorMoviesCard from './components/ActorMoviesCard.tsx/ActorMoviesCard';
 
 function App() {
 
@@ -71,6 +73,8 @@ function App() {
       return itemA.localeCompare(itemB);
   }
 
+  const starWarsUrlBuilder = new StarWarsUrlBuilder();
+ 
   return (
     <>
     {/* <MultiInput
@@ -100,11 +104,11 @@ function App() {
     <RefForm />
     <MoviePlayer movieId={25323516} />
     <FetchStarWarsData 
-      itemId={'1'}
-      category={'films'}
-      renderItem={(data: any)=> (
+        url={starWarsUrlBuilder.getUrl('1', 'films')}
+        renderItem={(data: any)=> (
         <StarWarsMovie {...data} />
       )} />
+      <ActorMoviesCard actorId={'1'} />
     </>
   );
 }
