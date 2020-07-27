@@ -17,7 +17,7 @@ test('should render actor movies when typing new one', async () => {
     const inputElem = document.querySelector('input');
 
     expect(inputElem).not.toBeNull();
-    
+
     if(inputElem) {
         inputElem.value = '2';
         await waitFor(() => {
@@ -25,5 +25,4 @@ test('should render actor movies when typing new one', async () => {
             expect(component.queryByText('Title'))
         });
     }
-
 });

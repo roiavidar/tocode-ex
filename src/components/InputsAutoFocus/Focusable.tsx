@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, RefObject } from 'react';
+import { useRef, useEffect, RefObject } from 'react';
 
 export default function Focusable(props: {
     focus: boolean,
