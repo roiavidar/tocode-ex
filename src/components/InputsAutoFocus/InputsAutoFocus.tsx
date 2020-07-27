@@ -27,7 +27,7 @@ export default function InputsAutoFocus(props: {
         <div>
         {
             characters.map((char: string, index: number) => (
-                <Focusable focus={currentFocus === index}>
+                <Focusable key={index} focus={currentFocus === index}>
                     <input 
                         key={index}
                         type="text"
