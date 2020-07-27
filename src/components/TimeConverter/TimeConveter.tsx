@@ -25,4 +25,3 @@ export default function TimeConverter(props: {
     )
 }
 
-export default timeConverter;

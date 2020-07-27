@@ -1,5 +1,8 @@
 import React, { ChangeEvent, FormEvent, useRef } from 'react'; 
 
+// Usually we'll use a single ref on the form element
+// and use querySelector to find the specific input items
+
 export default function RefForm() {
     const userName = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);

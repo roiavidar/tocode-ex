@@ -1,5 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react'; 
 
+// I wrote a refactoring suggestion here:
+// https://www.tocode.co.il/blog/2020-06-react-forms-state-hooks
+
 export default function StateForm() {
     const [userName, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
