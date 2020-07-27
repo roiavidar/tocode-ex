@@ -13,10 +13,6 @@ export default function ActorMoviesCard(props: {
     const [films, setFilms] = useState<string[]>([]);
     const starWarsUrlBuilder = new StarWarsUrlBuilder();
 
-    useEffect(() =>  {
-
-    }, [actorId])
-
     function updateFilms(data: {
         films: string[]
     }) {
@@ -56,7 +52,7 @@ export default function ActorMoviesCard(props: {
         const { error } = data;
         return (
             <div>
-                {!error ? 'Loading ...' : 'No Results!'}
+                {!error ? 'Loading ...' : ''}
             </div>
         )
     }
