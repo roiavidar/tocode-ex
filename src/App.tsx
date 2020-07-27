@@ -25,6 +25,7 @@ import FetchStarWarsData from './components/FetchData/FetchData';
 import StarWarsMovie from './components/StarWarsMovie/StarWarsMovie';
 import StarWarsUrlBuilder from './services/StartWarsUrlBuilder';
 import ActorMoviesCard from './components/ActorMoviesCard.tsx/ActorMoviesCard';
+import VimeoMovieService from './components/MoviePlayer/VimeoMovieService';
 
 function App() {
 
@@ -102,7 +103,7 @@ function App() {
     <InputsAutoFocus inputsNumber={6} />
     <StateForm />
     <RefForm />
-    <MoviePlayer movieId={25323516} />
+    <MoviePlayer movieId={25323516} moviePlayer={new VimeoMovieService()} />
     <FetchStarWarsData 
         url={starWarsUrlBuilder.getUrl('1', 'films')}
         renderItem={(data: any)=> (

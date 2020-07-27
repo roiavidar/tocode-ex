@@ -1,28 +1,19 @@
-import React, { useEffect, ChangeEvent, useState, useRef } from 'react';
-import Player  from '@vimeo/player';
+import React, { useEffect, ChangeEvent, useState } from 'react';
+import IMoviePlayer from './MoviePlayer.model';
 
 export default function MoviePlayer(props: {
-    movieId: number
+    movieId: number,
+    moviePlayer: IMoviePlayer
 }) {
-    const {movieId} = props;
+    const {movieId, moviePlayer} = props;
     const [movie, setMovie] = useState<number>(movieId);
-    const player = useRef<Player | null>(null);
 
     useEffect(() => {
-        player.current = new Player('moviePlayer', {
-            id: movie,
-            width: 640
-        });
-            
-        player.current.on('play', function() {
-            console.log('played the video!');
-        });
+        moviePlayer.createPlayer('moviePlayer', movie);
     }, []);
 
     useEffect(() => {
-        if (player.current) {
-            player.current.loadVideo(movie);
-        }
+        moviePlayer.loadVideo(movie);
     }, [movie]);
 
     
