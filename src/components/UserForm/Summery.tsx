@@ -1,10 +1,10 @@
 import React from 'react';
 
 export default function Summery(props: {
-    userName: string,
-    password: string,
-    country: string,
-    city: string
+    userName?: string,
+    password?: string,
+    country?: string,
+    city?: string
 }) {
     const {userName, password, country, city} = props;
     return (

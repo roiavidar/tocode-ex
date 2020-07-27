@@ -26,6 +26,9 @@ import StarWarsMovie from './components/StarWarsMovie/StarWarsMovie';
 import StarWarsUrlBuilder from './services/StartWarsUrlBuilder';
 import ActorMoviesCard from './components/ActorMoviesCard.tsx/ActorMoviesCard';
 import VimeoMovieService from './components/MoviePlayer/VimeoMovieService';
+import PersonalInfo from './components/UserForm/PersonalInfo';
+import LocationInfo from './components/UserForm/LocationInfo';
+import Summery from './components/UserForm/Summery';
 
 function App() {
 
@@ -97,8 +100,12 @@ function App() {
     <ColorPickerShades />
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
-    <UserForm stepsForm={stepsForm} />
     <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> */}
+    <UserForm stepsForm={stepsForm}>
+        <PersonalInfo />
+        <LocationInfo />
+        <Summery />
+    </UserForm>
     <SortableTable sortableService={sortableTable} />
     <InputsAutoFocus inputsNumber={6} />
     <StateForm />
