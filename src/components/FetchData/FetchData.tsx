@@ -15,7 +15,7 @@ export default function FetchData(props: {
         });
 
         return function cancel() {
-            updateData({});
+            updateData({error: true});
             xhr.abort();
         };
     }, [url]);

@@ -35,7 +35,7 @@ export default function ActorMoviesCard(props: {
                 key={filmUrl}
                 url={filmUrl}
                 renderItem={(data: any)=> (
-                    !isEmptyObject(data) ? <StarWarsMovie {...data} /> : renderLoading()
+                    isDataValid(data) ? <StarWarsMovie {...data} /> : renderLoading(data)
                 )} />
         ));
     }
@@ -46,10 +46,17 @@ export default function ActorMoviesCard(props: {
         )
     }
 
-    function renderLoading() {
+    function isDataValid(data: any) {
+        return !isEmptyObject(data) && !data.error;
+    }
+
+    function renderLoading(data: {
+        error: boolean
+    }) {
+        const { error } = data;
         return (
             <div>
-                Loading ...
+                {!error ? 'Loading ...' : 'No Results!'}
             </div>
         )
     }
@@ -61,7 +68,7 @@ export default function ActorMoviesCard(props: {
                 url={starWarsUrlBuilder.getUrl(actor, 'people')}
                 dataFetched={updateFilms}
                 renderItem={(data: any)=> (
-                    !isEmptyObject(data) ? <StarWarsActor {...data} /> : renderLoading()
+                    isDataValid(data) ? <StarWarsActor {...data} /> : renderLoading(data)
                 )}
             />}
             {renderFilms()}
