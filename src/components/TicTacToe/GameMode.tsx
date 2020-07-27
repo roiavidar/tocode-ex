@@ -1,9 +1,11 @@
 import {ITicTacToeService, IGameCell, Score, IPlayers} from './TicTacToe.model';
 import {GameState} from './TicTacToe.model';
-import { FIRST_PLAYER, SECOND_PLAYER, EMPTY_CELL, FLICKER, FADE, NO_WINNER, TIE, SCORE_TIE_INDEX } from './constants';
+import TicTacToe, {EMPTY_CELL} from './constants';
 import _ from 'lodash';
 
-export default class GameMode implements ITicTacToeService {
+const { FIRST_PLAYER, SECOND_PLAYER, FLICKER, FADE, NO_WINNER, TIE, SCORE_TIE_INDEX } = TicTacToe;
+
+export default abstract class GameMode implements ITicTacToeService {
     protected board: IGameCell[][] = this.createNewBoard();
     protected currentPlayer: number = FIRST_PLAYER;
     protected scores: Score[] = [{player: FIRST_PLAYER, score: 0}, {player: TIE, score: 0}, {player: SECOND_PLAYER, score: 0}];
@@ -39,9 +41,7 @@ export default class GameMode implements ITicTacToeService {
     }
     
 
-    tryToMark(row: number, col: number): GameState[] {
-        return [];
-    }
+    abstract tryToMark(row: number, col: number): GameState[];
 
     checkRow(row: number, col: number) {
         let winner = true;

@@ -1,4 +1,4 @@
-import { EMPTY_CELL } from "./constants";
+import {EMPTY_CELL} from "./constants";
 import { IGameCell, IAI } from "./TicTacToe.model";
 
 // There's a nice explanation of the min-max algorithm here:

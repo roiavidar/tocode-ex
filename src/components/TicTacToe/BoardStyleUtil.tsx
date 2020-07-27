@@ -1,5 +1,7 @@
 import { IGameCell } from './TicTacToe.model';
-import { FLICKER, FADE, FIRST_PLAYER, SECOND_PLAYER } from './constants';
+import TicTacToe from "./constants";
+
+const { FLICKER, FADE, FIRST_PLAYER, SECOND_PLAYER } = TicTacToe;
 
 const flickringStyle = {
     backgroundColor: 'red'

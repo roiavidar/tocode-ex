@@ -15,6 +15,11 @@ import { TimeConverterLogic } from './components/TimeConverter/TimeConverterLogi
 import CatchTheTargetLogic from './components/CatchTheTarget/CatchTheTargetLogic';
 import TicTacToe from './components/TicTacToe/TicTacToe';
 import { AI } from './components/TicTacToe/AI';
+import SortableTable from './components/SortableTable/SortableTable';
+import SortableTableService from './components/SortableTable/SortableTable.service';
+import InputsAutoFocus from './components/InputsAutoFocus/InputsAutoFocus';
+import StateForm from './components/RefFormVSStateForm/StateForm';
+import RefForm from './components/RefFormVSStateForm/RefForm';
 
 function App() {
 
@@ -49,9 +54,23 @@ function App() {
     calcTarget: () => Math.floor(Math.random() * boxes)
   });
 
+  const sortableTable = new SortableTableService(sortLogic);
+
+  sortableTable.SortedTable = [
+    ['Name', 'Country', 'Email'],
+    ['zina', 'UK', 'zina@gmail.com'],
+    ['dan', 'Israel', 'dan@gmail.com'],
+    ['dana', 'Israel', 'dana@gmail.com'],
+    ['anna', 'Israel', 'anna@gmail.com']
+  ];
+
+  function sortLogic(itemA: string, itemB: string) {
+      return itemA.localeCompare(itemB);
+  }
+
   return (
     <>
-    <MultiInput
+    {/* <MultiInput
       inputsNumber={5}>
         {
           ({text, onChange}: InputProps) => <input
@@ -71,7 +90,11 @@ function App() {
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
     <UserForm stepsForm={stepsForm} />
-    <TicTacToe gameSpeed={1500} computerAI={{isFirst: false, logic: new AI()}} />
+    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> */}
+    <SortableTable sortableService={sortableTable} />
+    <InputsAutoFocus inputsNumber={6} />
+    <StateForm />
+    <RefForm />
     </>
   );
 }
