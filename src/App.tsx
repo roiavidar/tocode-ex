@@ -100,7 +100,8 @@ function App() {
     <ColorPickerShades />
     <CatchTheTarget logic={catchTheTargetLogic} />
     <FilterList items={items} />
-    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> */}
+    <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> 
+      */}
     <UserForm stepsForm={stepsForm}>
         <PersonalInfo />
         <LocationInfo />
@@ -108,7 +109,7 @@ function App() {
     </UserForm>
     <SortableTable sortableService={sortableTable} />
     <InputsAutoFocus inputsNumber={6} />
-    <StateForm />
+    <StateForm /> 
     <RefForm />
     <MoviePlayer movieId={25323516} moviePlayer={new VimeoMovieService()} />
     <FetchStarWarsData 

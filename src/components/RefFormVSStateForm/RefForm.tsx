@@ -40,15 +40,15 @@ export default function RefForm() {
         <form onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
             <label>
                 User Name:
-                <input ref={userName} type="text" value={userName.current?.value} onChange={(event: ChangeEvent<HTMLInputElement>) => { setUserName(event) }}/>
+                <input ref={userName} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setUserName(event) }}/>
             </label>
             <label>
                 Password:
-                <input ref={password} type="text" value={password.current?.value} onChange={(event: ChangeEvent<HTMLInputElement>) => { setPassword(event) }}/>
+                <input ref={password} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setPassword(event) }}/>
             </label>
             <label>
                 Confirm Password:
-                <input ref={confirmPassword} type="text" value={confirmPassword.current?.value} onChange={(event: ChangeEvent<HTMLInputElement>) => { setConfirmPassword(event) }}/>
+                <input ref={confirmPassword} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setConfirmPassword(event) }}/>
             </label>
             <div ref={errorMessage}> { errorMessage.current?.textContent }</div>
             <input type="submit" value="Submit" />
