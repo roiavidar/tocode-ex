@@ -20,6 +20,9 @@ import SortableTableService from './components/SortableTable/SortableTable.servi
 import InputsAutoFocus from './components/InputsAutoFocus/InputsAutoFocus';
 import StateForm from './components/RefFormVSStateForm/StateForm';
 import RefForm from './components/RefFormVSStateForm/RefForm';
+import MoviePlayer from './components/MoviePlayer/MoviePlayer';
+import FetchStarWarsData from './components/FetchStarWarsData/FetchStarWarsData';
+import StarWarsMovie from './components/StarWarsMovie/StarWarsMovie';
 
 function App() {
 
@@ -95,6 +98,13 @@ function App() {
     <InputsAutoFocus inputsNumber={6} />
     <StateForm />
     <RefForm />
+    <MoviePlayer movieId={25323516} />
+    <FetchStarWarsData 
+      itemId={'1'}
+      category={'films'}
+      renderItem={(data: any)=> (
+        <StarWarsMovie {...data} />
+      )} />
     </>
   );
 }
