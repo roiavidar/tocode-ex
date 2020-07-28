@@ -16,11 +16,7 @@ export default function InputsAutoFocus(props: {
     }
 
     function getNextIndex(index: number) {
-        if (index + 1 === characters.length) {
-            return 0;
-        } else {
-            return index + 1;
-        }
+        return (index + 1) % characters.length;
     }
 
     return (
@@ -36,9 +32,9 @@ export default function InputsAutoFocus(props: {
                             key={index}
                             type="text"
                             value={char}
-                            tabIndex={1}
-                            onClick={() => { setCurrentFocus(index) }}
-                            onKeyPress={() => { setCurrentFocus(index) }}
+                            tabIndex={index + 1}
+                            onClick={() =>  setCurrentFocus(index) }
+                            onKeyPress={() => setCurrentFocus(index) }
                             onChange={(event: ChangeEvent<HTMLInputElement>) => { updateState(event.target.value, index) }} />
                     )} />
             ))

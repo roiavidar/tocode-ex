@@ -15,7 +15,7 @@ export function GameBoard(props: {
             {
                 _.range(boxes).map((box: number, index: number) => <input 
                                                     type="text"
-                                                    onClick={() => { tryToHit(index) }}
+                                                    onClick={() => tryToHit(index) }
                                                     style={index === target ? targetStyle: regularBoxStyle} />)
             }
         </div>

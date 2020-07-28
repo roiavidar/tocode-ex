@@ -3,10 +3,9 @@ import $ from 'jquery';
 
 export default function FetchData(props: {
     url: string,
-    dataFetched?: (data: any) => void
     renderItem: (data: any) => JSX.Element
 }) {
-    const {url, renderItem, dataFetched} = props;
+    const {url, renderItem} = props;
     const [data, setData] = useState({});
 
     useEffect(() => {
@@ -22,7 +21,6 @@ export default function FetchData(props: {
 
     function updateData(data: any) {
         setData(data);
-        dataFetched && dataFetched(data);
     }
 
     return (

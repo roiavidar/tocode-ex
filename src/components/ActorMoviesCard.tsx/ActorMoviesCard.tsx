@@ -10,22 +10,9 @@ export default function ActorMoviesCard(props: {
 }) {
     const { actorId } = props;
     const [actor, setActorId] = useState<string>(actorId || '');
-    const [films, setFilms] = useState<string[]>([]);
     const starWarsUrlBuilder = new StarWarsUrlBuilder();
 
-    function updateFilms(data: {
-        films: string[]
-    }) {
-        const {films} = data;
-        if (films) {
-            setFilms([...films]);
-        } else {
-            setFilms([]);
-        }
-        
-    }
-
-    function renderFilms() {
+    function renderFilms(films :any) {
         return films.map((filmUrl: string) => (
             <FetchStarWarsData 
                 key={filmUrl}
@@ -62,12 +49,13 @@ export default function ActorMoviesCard(props: {
             {renderInputForActorId()}
             {actor && <FetchStarWarsData 
                 url={starWarsUrlBuilder.getUrl(actor, 'people')}
-                dataFetched={updateFilms}
-                renderItem={(data: any)=> (
-                    isDataValid(data) ? <StarWarsActor {...data} /> : renderLoading(data)
-                )}
+                renderItem={(data: any)=> {
+                    return <>
+                                {isDataValid(data) ? <StarWarsActor {...data} /> : renderLoading(data)}
+                                {data.films && renderFilms(data.films)}
+                            </>
+                }}
             />}
-            {renderFilms()}
         </div>
          
     )

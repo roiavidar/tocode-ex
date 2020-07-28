@@ -1,14 +1,15 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react'; 
+import useFormField from './useFormField';
 
 export default function StateForm() {
-    const [userName, setUserName] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [errorMsg, setErrorMsg] = useState<string>('');
+    const userName = useFormField('userName');
+    const password = useFormField('password');
+    const confirmPassword = useFormField('confirmPassword');
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        if (password !== confirmPassword) {
+        if (password.value !== confirmPassword.value) {
             setErrorMsg("Password does not match");
         } else{
             setErrorMsg('');
@@ -19,15 +20,15 @@ export default function StateForm() {
         <form onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
             <label>
                 User Name:
-                <input type="text" value={userName} onChange={(event: ChangeEvent<HTMLInputElement>) => { setUserName(event.target.value) }}/>
+                <input type="text" {...userName}/>
             </label>
             <label>
                 Password:
-                <input type="text" value={password} onChange={(event: ChangeEvent<HTMLInputElement>) => { setPassword(event.target.value) }}/>
+                <input type="text" {...password}/>
             </label>
             <label>
                 Confirm Password:
-                <input type="text" value={confirmPassword} onChange={(event: ChangeEvent<HTMLInputElement>) => { setConfirmPassword(event.target.value) }}/>
+                <input type="text" {...confirmPassword}/>
             </label>
             <div> { errorMsg }</div>
             <input type="submit" value="Submit" />

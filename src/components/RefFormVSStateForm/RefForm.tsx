@@ -1,56 +1,82 @@
 import React, { ChangeEvent, FormEvent, useRef } from 'react'; 
 
 export default function RefForm() {
-    const userName = useRef<HTMLInputElement>(null);
-    const password = useRef<HTMLInputElement>(null);
-    const confirmPassword = useRef<HTMLInputElement>(null);
-    const errorMessage = useRef<HTMLDivElement>(null);
+    const form = useRef<HTMLFormElement>(null);
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        if (errorMessage.current) {
-            if (password.current?.value !== confirmPassword.current?.value) {
-                errorMessage.current.textContent = "Password does not match";
+        const {password, confirmPassword, errorMessage} = getFormElements();
+
+        if (password && confirmPassword && errorMessage) {
+            if (password.value !== confirmPassword.value) {
+                errorMessage.textContent = "Password does not match";
             } else{
-                errorMessage.current.textContent = '';
+                errorMessage.textContent = '';
             }
         }
     }
 
     function setUserName(event: ChangeEvent<HTMLInputElement>) {
-        if (userName.current) {
-            userName.current.value = event.target.value;
+        const {userName} = getFormElements();
+
+        if (userName) {
+            userName.value = event.target.value;
         }
     }
 
 
     function setPassword(event: ChangeEvent<HTMLInputElement>) {
-        if (password.current) {
-            password.current.value = event.target.value;
+        const {password} = getFormElements();
+
+        if (password) {
+            password.value = event.target.value;
         }
     }
 
     function setConfirmPassword(event: ChangeEvent<HTMLInputElement>) {
-        if (confirmPassword.current) {
-            confirmPassword.current.value = event.target.value;
+        const {confirmPassword} = getFormElements();
+
+        if (confirmPassword) {
+            confirmPassword.value = event.target.value;
+        }
+    }
+
+    function getFormElements(): { userName: HTMLInputElement | undefined | null, password: HTMLInputElement | undefined | null, confirmPassword: HTMLInputElement | undefined | null, errorMessage: HTMLDivElement | undefined | null} {
+        let userName: HTMLInputElement | undefined | null;
+        let password;
+        let confirmPassword;
+        let errorMessage;
+
+        if (form.current) {
+            userName = form.current.querySelector('.userName') as HTMLInputElement;
+            password = form.current.querySelector('.password') as HTMLInputElement;
+            confirmPassword = form.current.querySelector('.confirmPassword') as HTMLInputElement;
+            errorMessage = form.current.querySelector('.errorMessage') as HTMLDivElement;
+        }
+
+        return {
+            userName,
+            password,
+            confirmPassword,
+            errorMessage
         }
     }
 
     return (
-        <form onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
+        <form ref={form} onSubmit={(event: FormEvent<HTMLFormElement>) => handleSubmit(event)}>
             <label>
                 User Name:
-                <input ref={userName} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setUserName(event) }}/>
+                <input className="userName" type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setUserName(event) }}/>
             </label>
             <label>
                 Password:
-                <input ref={password} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setPassword(event) }}/>
+                <input className="password" type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setPassword(event) }}/>
             </label>
             <label>
                 Confirm Password:
-                <input ref={confirmPassword} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setConfirmPassword(event) }}/>
+                <input className="confirmPassword" type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => { setConfirmPassword(event) }}/>
             </label>
-            <div ref={errorMessage}> { errorMessage.current?.textContent }</div>
+            <div className="errorMessage"></div>
             <input type="submit" value="Submit" />
         </form>
     )
