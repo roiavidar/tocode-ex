@@ -16,12 +16,18 @@ export default function InputsAutoFocus(props: {
     }
 
     function getNextIndex(index: number) {
+      // Better to use %
+      // index = (index + 1) % characters.length;
         if (index + 1 === characters.length) {
             return 0;
         } else {
             return index + 1;
         }
     }
+
+    // 1. Since we use multiple components - tab index should increment
+    //    (1 for the first, then 2, 3 etc.)
+    // 2. You don't need the extra curly braces in arrow functions
 
     return (
         <div>
@@ -37,8 +43,8 @@ export default function InputsAutoFocus(props: {
                             type="text"
                             value={char}
                             tabIndex={1}
-                            onClick={() => { setCurrentFocus(index) }}
-                            onKeyPress={() => { setCurrentFocus(index) }}
+                            onClick={() => setCurrentFocus(index) }
+                            onKeyPress={() => setCurrentFocus(index) }
                             onChange={(event: ChangeEvent<HTMLInputElement>) => { updateState(event.target.value, index) }} />
                     )} />
             ))

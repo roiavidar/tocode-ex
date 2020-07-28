@@ -26,6 +26,18 @@ export function CatchTheTarget(props: {
         setTarget(logic.target);
     }
 
+    // A tiny markup comment:
+    // look how nice it looks to have: ScoreBoard and GameBoard,
+    // it feels so abstract
+    // but then you finish with the button which kinda breaks this flow
+    // would have been nicer to have a full component there for example:
+    // <GameControlPanel controls="new-game,pause-resume" />
+    // or maybe:
+    // <GameControlPanel>
+    //    <NewGameButton />
+    //    <PauseResumeButton />
+    // </GameControlPanel>
+    // or something like that
     return (
         <div>
             <ScoreBoard score={score} />

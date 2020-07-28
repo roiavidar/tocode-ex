@@ -18,3 +18,4 @@ export default function MultiInput(props: {inputsNumber: number, children: Multi
         </div>   
     )
 }
+

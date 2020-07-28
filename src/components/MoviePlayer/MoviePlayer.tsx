@@ -1,6 +1,9 @@
 import React, { useEffect, ChangeEvent, useState } from 'react';
 import IMoviePlayer from './MoviePlayer.model';
 
+// I'm not sure about your API - passing moviePlayer as props
+// Does it really make sense? Can you think of a use case where the same MoviePlayerService
+// will be shared between multiple MoviePlayer components?
 export default function MoviePlayer(props: {
     movieId: number,
     moviePlayer: IMoviePlayer

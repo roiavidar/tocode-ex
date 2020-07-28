@@ -13,6 +13,8 @@ export default function TimeConverter(props: {
         setTimes(timeConverterLogic.times);
     }
 
+    // Woudldn't it be nicer to skip the Fragment and the inner curlies?
+    // i.e. return timeRatios.map(...)
     return (
         <div>
             {times.map((time: number, index: number) => <input 
@@ -22,3 +24,4 @@ export default function TimeConverter(props: {
         </div> 
     )
 }
+

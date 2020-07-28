@@ -3,6 +3,10 @@ import { render, fireEvent } from '@testing-library/react';
 import SortableTableService from './SortableTable.service';
 import SortableTable from './SortableTable';
 
+// 1. Testing tip - 
+//    I would change the column names, type and order in the tests
+//    The more variety you have in tests - the better
+
 const data = [
     ['Name', 'Country', 'Email'],
     ['zina', 'UK', 'zina@gmail.com'],

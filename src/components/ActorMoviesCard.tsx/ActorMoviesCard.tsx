@@ -57,6 +57,7 @@ export default function ActorMoviesCard(props: {
         )
     }
 
+    // what is the role of dataFetched property?
     return (
         <div>
             {renderInputForActorId()}

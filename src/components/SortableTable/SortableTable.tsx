@@ -15,6 +15,19 @@ function SortableTable(props: {
     const {sortableService, getRowKey, getCellKey, getCell, getHeaderCell, getHeaderCellKey} = props;
     const data = sortableService.SortedTable;
 
+    // 1.
+    // These internal render() functions are better written as render props
+    // (in the default props section)
+    // that would make your component shorter and allow customisation
+
+    // 2.
+    // Sorting logic is better put in the component than in the MobX store
+    // because multiple SortableTable components may be connected to the same table data
+    // So a better way is to:
+    // const data = sortableService.getSortedData(sortColumn, asc)
+    // That way if the data changes your component will re-render, but you can have
+    // multiple components showing different views of the same data
+
     function renderRow(row: any[]) {
         return (
             <tr key={getRowKey(row)}>
