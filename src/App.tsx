@@ -32,6 +32,7 @@ import Summery from './components/UserForm/Summery';
 import Carousel from './components/Carousel/Carousel';
 import FancyCarousel from './components/Carousel/FancyCarousel';
 import AwesomeCarousel from './components/Carousel/AwesomeCarousel';
+import FindStarWarsCharacter from './components/StarWarsCharacter/FindStarWarsCharacter';
 
 function App() {
 
@@ -141,6 +142,7 @@ function App() {
         <img height='300' src="https://media.timeout.com/images/105658075/630/472/image.jpg" alt="Chicago" />
         <img height='300' src="https://static01.nyt.com/images/2020/05/10/nyregion/00nyvirus-reopen-timessquare/00nyvirus-reopen101-mobileMasterAt3x.jpg" alt="New York" />
       </AwesomeCarousel>
+      <FindStarWarsCharacter />
     </>
   );
 }
