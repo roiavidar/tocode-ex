@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FetchStarWarsData from '../FetchData/FetchData';
 import StarWarsMovie from '../StarWarsMovie/StarWarsMovie';
 import StarWarsUrlBuilder from '../../services/StartWarsUrlBuilder';

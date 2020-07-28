@@ -29,6 +29,9 @@ import VimeoMovieService from './components/MoviePlayer/VimeoMovieService';
 import PersonalInfo from './components/UserForm/PersonalInfo';
 import LocationInfo from './components/UserForm/LocationInfo';
 import Summery from './components/UserForm/Summery';
+import Carousel from './components/Carousel/Carousel';
+import FancyCarousel from './components/Carousel/FancyCarousel';
+import AwesomeCarousel from './components/Carousel/AwesomeCarousel';
 
 function App() {
 
@@ -37,6 +40,11 @@ function App() {
     margin: '5px',
     display: 'block'
   };
+
+  const carouselStyle = {
+    height: '300px',
+    width: '300px'
+  }
 
   const items = ['apple', 'oranges', 'watermelon'];
 
@@ -118,6 +126,21 @@ function App() {
         <StarWarsMovie {...data} />
       )} />
       <ActorMoviesCard actorId={'1'} />
+      <Carousel style={carouselStyle}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Los_Angeles%2C_Winter_2016.jpg" alt="Los Angeles" />
+        <img src="https://media.timeout.com/images/105658075/630/472/image.jpg" alt="Chicago" />
+        <img src="https://static01.nyt.com/images/2020/05/10/nyregion/00nyvirus-reopen-timessquare/00nyvirus-reopen101-mobileMasterAt3x.jpg" alt="New York" />
+      </Carousel>
+      <FancyCarousel style={carouselStyle} carouselId="twitterBootstap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Los_Angeles%2C_Winter_2016.jpg" alt="Los Angeles" />
+        <img src="https://media.timeout.com/images/105658075/630/472/image.jpg" alt="Chicago" />
+        <img src="https://static01.nyt.com/images/2020/05/10/nyregion/00nyvirus-reopen-timessquare/00nyvirus-reopen101-mobileMasterAt3x.jpg" alt="New York" />
+      </FancyCarousel>
+      <AwesomeCarousel style={carouselStyle}>
+        <img height='300' src="https://upload.wikimedia.org/wikipedia/commons/8/89/Los_Angeles%2C_Winter_2016.jpg" alt="Los Angeles" />
+        <img height='300' src="https://media.timeout.com/images/105658075/630/472/image.jpg" alt="Chicago" />
+        <img height='300' src="https://static01.nyt.com/images/2020/05/10/nyregion/00nyvirus-reopen-timessquare/00nyvirus-reopen101-mobileMasterAt3x.jpg" alt="New York" />
+      </AwesomeCarousel>
     </>
   );
 }
