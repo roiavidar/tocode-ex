@@ -23,12 +23,13 @@ export default class SortableTableService {
         return this.sortedTable;
     }
 
-    public sort(columnIndex: number) {
+    public sort(columnIndex?: number) {
+        const _columnIndex = columnIndex || this.tableOrder.columnIndex || 0;
         if (this.tableOrder.columnIndex === undefined || this.tableOrder.order === DESC) {
             this.tableOrder.columnIndex = columnIndex;
-            this.sortDirection(ASC, columnIndex);
+            this.sortDirection(ASC, _columnIndex);
         } else {
-            this.sortDirection(DESC, columnIndex);
+            this.sortDirection(DESC, _columnIndex);
         }
         return this.sortedTable;
     }

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ISortableService from './SortableTable.service';
 import SortableTableService from './SortableTable.service';
 import { observer } from 'mobx-react';
 import TableDetails from './TableDetails';
+import { ITableData } from './SortableTable.model';
 
 function SortableTable(props: {
+    tableData: ITableData
     sortableService: ISortableService,
     getRowKey: (cell: any) => string,
     getCellKey: (cell: any) => string,
@@ -12,8 +14,13 @@ function SortableTable(props: {
     getHeaderCell: (cell: any) => JSX.Element,
     getHeaderCellKey: (cell: any) => string
 }) {
-    const {sortableService, getRowKey, getCellKey, getCell, getHeaderCell, getHeaderCellKey} = props;
-    const data = sortableService.SortedTable;
+    const {sortableService, getRowKey, getCellKey, getCell, getHeaderCell, getHeaderCellKey, tableData} = props;
+    const data = getTableData();
+    
+    useEffect(() => {
+        sortableService.SortedTable = data;
+        sortableService.sort();    
+    }, [tableData.data]);
 
     function renderRow(row: any[]) {
         return (
@@ -25,6 +32,10 @@ function SortableTable(props: {
                 }
             </tr>
         )
+    }
+
+    function getTableData() {
+        return sortableService.SortedTable.length !== 0 ? sortableService.SortedTable : tableData.data;
     }
 
     function renderHeaderRow(headerRow: any[]) {

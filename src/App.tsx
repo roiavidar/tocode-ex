@@ -33,6 +33,7 @@ import Carousel from './components/Carousel/Carousel';
 import FancyCarousel from './components/Carousel/FancyCarousel';
 import AwesomeCarousel from './components/Carousel/AwesomeCarousel';
 import FindStarWarsCharacter from './components/StarWarsCharacter/FindStarWarsCharacter';
+import TableData from './components/SortableTable/TableData';
 
 function App() {
 
@@ -73,8 +74,8 @@ function App() {
   });
 
   const sortableTable = new SortableTableService(sortLogic);
-
-  sortableTable.SortedTable = [
+  const tableData = new TableData();
+  tableData.data = [
     ['Name', 'Country', 'Email'],
     ['zina', 'UK', 'zina@gmail.com'],
     ['dan', 'Israel', 'dan@gmail.com'],
@@ -116,7 +117,7 @@ function App() {
         <LocationInfo />
         <Summery />
     </UserForm>
-    <SortableTable sortableService={sortableTable} />
+    <SortableTable sortableService={sortableTable} tableData={tableData} />
     <InputsAutoFocus inputsNumber={6} />
     <StateForm /> 
     <RefForm />

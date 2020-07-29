@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import SortableTableService from './SortableTable.service';
 import SortableTable from './SortableTable';
+import TableData from './TableData';
 
 const data = [
     ['Name', 'Country', 'Email'],
@@ -52,16 +53,18 @@ test('should sort on second column', () => {
 
 test('render sorted table', () => {
     const sortableTable = new SortableTableService(sortLogic);
-    sortableTable.SortedTable = data;
-    const table = render(<SortableTable  sortableService={sortableTable} />);
+    const tableData = new TableData();
+    tableData.data = data;
+    const table = render(<SortableTable  sortableService={sortableTable} tableData={tableData} />);
     table.getByText('zina');
     table.getByText('Country');
 });
 
 test('sort rendered table', () => {
     const sortableTable = new SortableTableService(sortLogic);
-    sortableTable.SortedTable = data;
-    const table = render(<SortableTable sortableService={sortableTable} />);
+    const tableData = new TableData();
+    tableData.data = data;
+    const table = render(<SortableTable sortableService={sortableTable} tableData={tableData} />);
     const countryElem = table.getByText('Country');
     fireEvent.click(countryElem);
     const firstRowCell = document.querySelector('tr > td:first-child');

@@ -13,3 +13,7 @@ export interface ISortableService {
     SortedTable: any[][];
     tableOrder: ITableOrder;
 }
+
+export interface ITableData {
+    data: any[][];
+}
