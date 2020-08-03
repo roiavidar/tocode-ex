@@ -36,10 +36,7 @@ import FindStarWarsCharacter from './components/StarWarsCharacter/FindStarWarsCh
 import TableData from './components/SortableTable/TableData';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Header from './components/ChatHeader/Header';
-import Banner from './components/Banner/Banner';
-import Messages from './components/Messages/Messages';
-import AddMessage from './components/AddMessage/AddMessage';
+import Chat from './components/Chat/Chat';
 
 function App() {
 
@@ -152,12 +149,7 @@ function App() {
       <FindStarWarsCharacter /> */}
 
       <Provider store={store}>
-        <div>
-          <Header />
-          <Banner />
-          <Messages />
-          <AddMessage />
-        </div>
+        <Chat />
       </Provider>
     </>
   );

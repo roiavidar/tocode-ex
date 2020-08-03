@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addMessage } from '../../redux/actions';
 
@@ -7,17 +7,16 @@ export default connect()(function Header(props: {
     dispatch: (action: any) => void
 }) {
     const {dispatch} = props;
-    const messageBox = useRef<HTMLInputElement | null>(null);
+    const [message, setMessage] = useState<string>('');
 
     function onMessageSend() {
-        if (messageBox.current) {
-            dispatch(addMessage(messageBox.current.value));
-        }
+        dispatch(addMessage(message));
+        setMessage('');
     }
 
     return (
        <div>
-           <input ref={messageBox} type="text" placeholder="type your message" />
+           <input value={message} type="text" placeholder="type your message" onChange={(event) => setMessage(event?.target.value)} />
            <button onClick={onMessageSend}>Send</button>
        </div>
     )
