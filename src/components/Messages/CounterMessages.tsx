@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IChatState, IMessage } from '../../redux/store';
+import { IChatState, IMessage, AppState } from '../../redux/store';
 
 const messagesCounterStyle = {
     backgroundColor: 'red',
@@ -11,10 +11,11 @@ const messagesCounterStyle = {
     textAlign: 'center' as  const
 }
 
-function mapStateToProps(state: IChatState) {
+function mapStateToProps(state: AppState) {
+    const chat = state.chat;
     return {
-        messages: state.messages.filter((message: IMessage) => (
-            state.activeRoomId === message.roomId
+        messages: chat.messages.filter((message: IMessage) => (
+            chat.activeRoomId === message.roomId
         )),
     }
 }

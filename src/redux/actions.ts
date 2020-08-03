@@ -16,7 +16,7 @@ return { type: 'SET_USERNAME', payload: newUsername };
   
 export function addMessage(newMessage: string) {
     return {
-        type: 'ADD_MESSAGE', payload: newMessage
+        type: 'ADD_MESSAGE', payload: {message: newMessage}
     }
 }
 
@@ -25,5 +25,19 @@ export function deleteMessage(messageToDelete: number) {
         type: 'DELETE_MESSAGE',
         payload: messageToDelete
     }
+}
+
+export function undoLastChatAction() {
+    return {
+        type: 'UNDO',
+        payload: {}
+    }
+}
+
+export function addDelay(action: { payload: any }, delay: number) {
+    action.payload.meta = {
+        delay
+    };
+    return action;
 }
   

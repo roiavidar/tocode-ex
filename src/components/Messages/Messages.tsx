@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IChatState, IMessage } from '../../redux/store';
+import { IMessage, AppState } from '../../redux/store';
 import { deleteMessage } from '../../redux/actions';
 
-function mapStateToProps(state: IChatState) {
+function mapStateToProps(state: AppState) {
+    const chat = state.chat;
     return {
-        messages: state.messages.filter((message: IMessage) => (
-            state.activeRoomId === message.roomId
+        messages: chat.messages.filter((message: IMessage) => (
+            chat.activeRoomId === message.roomId
         )),
     }
 }

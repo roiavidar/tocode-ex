@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { AppState } from '../../redux/store';
 
-function mapStateToProps(state: {
-    username: string
-}) {
+function mapStateToProps(state: AppState) {
     return {
-        username: state.username,
+        username: state.chat.username,
     }
 }
 
