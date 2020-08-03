@@ -34,6 +34,12 @@ import FancyCarousel from './components/Carousel/FancyCarousel';
 import AwesomeCarousel from './components/Carousel/AwesomeCarousel';
 import FindStarWarsCharacter from './components/StarWarsCharacter/FindStarWarsCharacter';
 import TableData from './components/SortableTable/TableData';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Header from './components/ChatHeader/Header';
+import Banner from './components/Banner/Banner';
+import Messages from './components/Messages/Messages';
+import AddMessage from './components/AddMessage/AddMessage';
 
 function App() {
 
@@ -112,7 +118,7 @@ function App() {
     <FilterList items={items} />
     <TicTacToe gameSpeed={1500} computerAI={{isFirst: true, logic: new AI()}} /> 
       */}
-    <UserForm stepsForm={stepsForm}>
+    {/* <UserForm stepsForm={stepsForm}>
         <PersonalInfo />
         <LocationInfo />
         <Summery />
@@ -143,7 +149,16 @@ function App() {
         <img height='300' src="https://media.timeout.com/images/105658075/630/472/image.jpg" alt="Chicago" />
         <img height='300' src="https://static01.nyt.com/images/2020/05/10/nyregion/00nyvirus-reopen-timessquare/00nyvirus-reopen101-mobileMasterAt3x.jpg" alt="New York" />
       </AwesomeCarousel>
-      <FindStarWarsCharacter />
+      <FindStarWarsCharacter /> */}
+
+      <Provider store={store}>
+        <div>
+          <Header />
+          <Banner />
+          <Messages />
+          <AddMessage />
+        </div>
+      </Provider>
     </>
   );
 }

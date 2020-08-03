@@ -35,7 +35,9 @@ export function UserForm(props: {
         <div>
             <h3>{userFormTitle}</h3>
             {
-                 React.cloneElement(stepsForm.currentStepElem, childProps)
+                props.children.map((child: JSX.Element) => {
+                    return React.cloneElement(child, childProps)
+                })
             }
             <div>
                 <button

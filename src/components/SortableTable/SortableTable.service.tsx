@@ -25,6 +25,7 @@ export default class SortableTableService {
 
     public sort(columnIndex?: number) {
         const _columnIndex = columnIndex || this.tableOrder.columnIndex || 0;
+        this.tableOrder.columnIndex = _columnIndex;
         if (this.tableOrder.columnIndex === undefined || this.tableOrder.order === DESC) {
             this.tableOrder.columnIndex = columnIndex;
             this.sortDirection(ASC, _columnIndex);
