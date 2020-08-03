@@ -10,10 +10,6 @@ export function createRoom(roomName: string) {
 return { type: 'CREATE_ROOM', payload: roomName };
 }
 
-export function receivedMessage(message: string) {
-return { type: 'RECEIVED_MESSAGE', payload: message };
-}
-
 export function setUsername(newUsername: string) {
 return { type: 'SET_USERNAME', payload: newUsername };
 }

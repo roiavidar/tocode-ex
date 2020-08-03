@@ -1,6 +1,5 @@
 import { createStore } from 'redux';
 import produce from 'immer';
-import { getNextId } from 'mobx/lib/internal';
 
 const initialState: IChatState = {
   rooms: [
@@ -41,10 +40,6 @@ const reducer = produce((state, action) => {
   switch(action.type) {
     case 'SET_USERNAME':
       state.username = action.payload;
-      break;
-
-    case 'RECEIVED_MESSAGE':      
-      state.messages.push(action.payload);
       break;
 
     case 'CREATE_ROOM':
