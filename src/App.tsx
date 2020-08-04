@@ -37,6 +37,13 @@ import TableData from './components/SortableTable/TableData';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Chat from './components/Chat/Chat';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import StarwarsCharacter from './components/StarWarsCharacter/StarWarsCharacter';
 
 function App() {
 
@@ -147,6 +154,10 @@ function App() {
         <img height='300' src="https://static01.nyt.com/images/2020/05/10/nyregion/00nyvirus-reopen-timessquare/00nyvirus-reopen101-mobileMasterAt3x.jpg" alt="New York" />
       </AwesomeCarousel>
       <FindStarWarsCharacter /> */}
+
+      <Route path="/users/:id">
+        <StarwarsCharacter id={'-1'} />
+      </Route>
 
       <Provider store={store}>
         <Chat />

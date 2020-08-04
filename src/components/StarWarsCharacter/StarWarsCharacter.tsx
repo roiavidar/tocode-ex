@@ -1,10 +1,11 @@
 import React from 'react';
 import useRemoteData from './useRemoteData';
+import { useParams } from 'react-router-dom';
 
 export default function StarwarsCharacter(props: {
     id: string
 }) {
-    const { id } = props;
+    const { id } = useParams() || props;
     const [data, isLoading, error] = useRemoteData(`https://swapi.dev/api/people/${id}/`, [id]);
 
     if (error) {
