@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IChatState, IMessage, AppState } from '../../redux/store';
+import { IMessage, AppState } from '../../redux/store';
 
 const messagesCounterStyle = {
     backgroundColor: 'red',

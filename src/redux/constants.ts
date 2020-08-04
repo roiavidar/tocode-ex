@@ -1,0 +1,9 @@
+export const RECEIVED_ROOMS = 'RECIEVED_ROOMS';
+export const SET_ACTIVE_ROOM = 'SET_ACTIVE_ROOM';
+export const CREATE_ROOM = 'CREATE_ROOM';
+export const SET_USERNAME = 'SET_USERNAME';
+export const ADD_MESSAGE = 'ADD_MESSAGE'; 
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+export const UNDO = 'UNDO';
+export const LOAD_FROM_LOCALSTORAGE = 'LOAD_FROM_LOCALSTORAGE';
+export const CHAT_STATE = 'chatState';

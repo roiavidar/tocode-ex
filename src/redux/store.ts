@@ -2,6 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import createReducer from './reducerUtils';
 import delayMiddleWare from './middlewares/delay';
 import undoMiddleware from './middlewares/undo';
+import { loadFromLocalstorage } from './actions';
+import stateInLocalstorage from './middlewares/stateInLocalstorage';
 
 const initialState: { chat: IChatState } = {
   chat: {
@@ -93,16 +95,30 @@ const undoLastChatAction = {
         }
 }
 
+const localStorage = {
+    loadFromLocalstorage(
+            state: AppState,
+            action: { payload: {loadedState: AppState}}) {
+                state.chat = action.payload.loadedState.chat;
+            }
+}
+
 const chat = {
-    ...account,
-    ...rooms,
-    ...messages,
-    ...undoLastChatAction
+    account,
+    rooms,
+    messages,
+    undoLastChatAction,
+    localStorage
 };
 
-const reducer = createReducer(chat, initialState);
+const appReducer = {
+    chat
+}
 
-const store = createStore(reducer,applyMiddleware(undoMiddleware, delayMiddleWare));
+const reducer = createReducer(appReducer, initialState);
+
+const store = createStore(reducer,applyMiddleware(undoMiddleware, delayMiddleWare, stateInLocalstorage));
+store.dispatch(loadFromLocalstorage());
 (window as any).store = store;
 export default store;
 
