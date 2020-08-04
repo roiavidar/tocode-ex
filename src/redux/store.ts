@@ -88,27 +88,23 @@ const messages = {
     }
 }
 
-const undoLastChatAction = {
+const state = {
     undo(state: AppState,
         action: { payload: { prevStore: AppState}}) {
             state.chat = action.payload.prevStore.chat;
-        }
-}
-
-const localStorage = {
+    },
     loadFromLocalstorage(
-            state: AppState,
-            action: { payload: {loadedState: AppState}}) {
-                state.chat = action.payload.loadedState.chat;
-            }
+        state: AppState,
+        action: { payload: {loadedState: AppState}}) {
+            state.chat = action.payload.loadedState.chat;
+    }
 }
 
 const chat = {
     account,
     rooms,
     messages,
-    undoLastChatAction,
-    localStorage
+    state
 };
 
 const appReducer = {
